@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Insights &amp; Analytics | Living Spiritz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#291802",
+                        "secondary-fixed": "#d2e7e6",
+                        "surface-tint": "#4d6171",
+                        "on-primary-fixed": "#081d2c",
+                        "on-primary-container": "#8095a7",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed-dim": "#e3c19d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#0c1e1f",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#384a4a",
+                        "primary-fixed-dim": "#b4c9dc",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "tertiary": "#241301",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#43474c",
+                        "secondary-container": "#d2e7e6",
+                        "secondary-fixed-dim": "#b6caca",
+                        "on-secondary-container": "#556868",
+                        "tertiary-fixed": "#ffddb9",
+                        "on-primary-fixed-variant": "#354959",
+                        "primary-container": "#192d3c",
+                        "tertiary-container": "#3b270e",
+                        "outline-variant": "#c3c7cc",
+                        "outline": "#73777c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c9dc",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#4f6262",
+                        "on-tertiary-fixed-variant": "#5a4227",
+                        "on-tertiary-container": "#ab8d6c",
+                        "on-surface": "#1a1c1c",
+                        "primary": "#031827",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#d0e5f9",
+                        "surface-dim": "#dadada",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9f9"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-900 z-50 font-manrope antialiased tracking-wide">
+<div class="flex flex-col h-full py-8 space-y-2">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-teal-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">spa</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-stone-50 leading-tight">The Sanctuary</h2>
+<p class="text-xs text-slate-400">Curate your life</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-3 transition-all duration-200 hover:bg-slate-800/50 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="mood">mood</span>
+<span>Mood Tracker</span>
+</a>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-3 transition-all duration-200 hover:bg-slate-800/50 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="self_care">self_care</span>
+<span>Wellness Tools</span>
+</a>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-3 transition-all duration-200 hover:bg-slate-800/50 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="armchair">chair</span>
+<span>Goal Management</span>
+</a>
+<a class="bg-teal-800/30 text-stone-50 rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-semibold">Insights</span>
+</a>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-3 transition-all duration-200 hover:bg-slate-800/50 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span>Community</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full py-4 bg-gradient-to-br from-teal-500 to-teal-700 text-white rounded-xl font-bold shadow-lg shadow-teal-900/20 active:scale-95 transition-transform">
+                    Start Breathing
+                </button>
+<div class="pt-4 border-t border-slate-800 space-y-1">
+<a class="text-slate-400 hover:text-stone-200 px-4 py-2 flex items-center gap-3 text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-base" data-icon="help">help</span>
+<span>Help Center</span>
+</a>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-2 flex items-center gap-3 text-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</div>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-stone-50/80 backdrop-blur-md sticky top-0 z-40 shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto font-manrope">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold tracking-tight text-slate-900">Living Spiritz</span>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-stone-400">search</span>
+<input class="bg-stone-100 border-none rounded-full py-2 pl-10 pr-4 w-64 text-sm focus:ring-2 focus:ring-teal-500/20 transition-all" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-stone-500 font-medium hover:text-teal-600 transition-colors" href="#">Overview</a>
+<a class="text-teal-700 font-semibold border-b-2 border-teal-600 pb-1" href="#">Analytics</a>
+<a class="text-stone-500 font-medium hover:text-teal-600 transition-colors" href="#">Reports</a>
+</nav>
+<div class="h-6 w-px bg-stone-200"></div>
+<div class="flex items-center gap-4">
+<button class="text-stone-500 hover:text-teal-600 transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-stone-500 hover:text-teal-600 transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-stone-200 overflow-hidden ring-2 ring-white ring-offset-2">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling woman with clear skin and professional attire against a neutral soft studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMERe6MhuM5r59q0WfksMDXhKafBJ7uMMkCQo1FvMuwqXFOYjoMOVvdr5WSnOmiQwvyyEaV4rqHej2BnJ6bcbS-KKYxJUOBp-EyGQMEAbDdVhxYq6yzBlnfdrfw8YGqBMO568gtuE-tnkSnDU9sBZBRFpwsUdpOkqYKNes1wvnAqpgVKMR4rvpU70qLUWhdhbTUIMgpOWkbMwFSQLDGoqB8oLnqit3K8TQJAXLSmhH9GDmMP5R7ZrpqJrJLbtcszBcLiyHNQXZnaM_"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-screen-2xl mx-auto space-y-10">
+<!-- Hero Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="space-y-2">
+<h1 class="text-5xl font-extrabold font-headline tracking-tight text-primary leading-tight">Your Digital Sanctuary <br/>Insights</h1>
+<p class="text-secondary text-lg max-w-xl">A curated reflection of your week. Every data point is a step towards a more intentional life.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-low px-6 py-3 rounded-xl text-on-secondary-fixed-variant font-semibold flex items-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+                        Last 7 Days
+                    </button>
+<button class="bg-primary-container bg-gradient-to-br from-[#031827] to-[#192D3C] text-white px-8 py-3 rounded-xl font-bold shadow-xl shadow-primary/10 active:scale-95 transition-all">
+                        Export Journal
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Productivity Score Summary (Small Card) -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_10px_40px_rgba(26,28,28,0.05)] flex flex-col justify-between">
+<div>
+<span class="text-xs font-bold tracking-[0.1em] text-secondary uppercase mb-4 block">Current Status</span>
+<h3 class="text-3xl font-bold font-headline text-primary">Productivity Score</h3>
+</div>
+<div class="py-10 text-center relative">
+<div class="inline-flex items-center justify-center p-8 rounded-full bg-surface-container-low border-8 border-primary relative">
+<span class="text-6xl font-extrabold text-primary">84</span>
+<span class="absolute -bottom-4 bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">+12%</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-secondary">Focus Sessions</span>
+<span class="font-bold text-primary">24h 15m</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 84%"></div>
+</div>
+<p class="text-sm text-secondary leading-relaxed">You're in the top <span class="text-primary font-bold">5% of mindful curators</span> this week. Keep the momentum.</p>
+</div>
+</div>
+<!-- Mood Trend Graph (Wide Card) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="flex justify-between items-center mb-10">
+<div>
+<span class="text-xs font-bold tracking-[0.1em] text-secondary uppercase block">Emotional Landscape</span>
+<h3 class="text-2xl font-bold font-headline text-primary">Mood Trend Graph</h3>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-lg text-xs font-medium text-secondary">
+<span class="w-2 h-2 rounded-full bg-teal-500"></span> Current
+                            </div>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-lg text-xs font-medium text-secondary">
+<span class="w-2 h-2 rounded-full bg-stone-300"></span> Average
+                            </div>
+</div>
+</div>
+<!-- Area Chart Visual Representation -->
+<div class="h-64 flex items-end gap-1 relative pt-4">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-dashed border-stone-200 w-full h-0"></div>
+<div class="border-t border-dashed border-stone-200 w-full h-0"></div>
+<div class="border-t border-dashed border-stone-200 w-full h-0"></div>
+<div class="border-t border-dashed border-stone-200 w-full h-0"></div>
+</div>
+<!-- Mock bars for area chart feel -->
+<div class="flex-1 flex flex-col justify-end h-full group relative">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[40%] w-full transition-all group-hover:h-[45%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Mon</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[65%] w-full transition-all group-hover:h-[70%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Tue</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[50%] w-full transition-all group-hover:h-[55%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Wed</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[85%] w-full transition-all group-hover:h-[90%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Thu</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[75%] w-full transition-all group-hover:h-[80%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Fri</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[60%] w-full transition-all group-hover:h-[65%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Sat</div>
+</div>
+<div class="flex-1 flex flex-col justify-end h-full group">
+<div class="bg-gradient-to-t from-teal-50 to-teal-200/50 rounded-t-xl h-[95%] w-full transition-all group-hover:h-[100%]"></div>
+<div class="mt-4 text-center text-[10px] font-bold text-stone-400 uppercase tracking-widest">Sun</div>
+</div>
+</div>
+</div>
+<!-- Habit Completion Chart (Vertical Flow) -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="flex justify-between items-start mb-8">
+<div>
+<span class="text-xs font-bold tracking-[0.1em] text-secondary uppercase block">Daily Disciplines</span>
+<h3 class="text-2xl font-bold font-headline text-primary">Habit Completion</h3>
+</div>
+<button class="text-teal-600 font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="space-y-6">
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-medium text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-500 text-lg" style="font-variation-settings: 'FILL' 1;">air</span>
+                                    Morning Meditation
+                                </span>
+<span class="text-xs font-bold text-secondary">6/7 Days</span>
+</div>
+<div class="flex gap-1 h-8">
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-surface-container-high rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-medium text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-500 text-lg" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                                    Hydration Goal (3L)
+                                </span>
+<span class="text-xs font-bold text-secondary">7/7 Days</span>
+</div>
+<div class="flex gap-1 h-8">
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-medium text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-500 text-lg" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                                    Evening Reading
+                                </span>
+<span class="text-xs font-bold text-secondary">4/7 Days</span>
+</div>
+<div class="flex gap-1 h-8">
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-surface-container-high rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+<div class="flex-1 bg-surface-container-high rounded-md"></div>
+<div class="flex-1 bg-surface-container-high rounded-md"></div>
+<div class="flex-1 bg-primary rounded-md"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Wellness Radar Chart (Artistic Card) -->
+<div class="col-span-12 lg:col-span-5 bg-primary-container p-8 rounded-xl shadow-xl overflow-hidden relative">
+<div class="relative z-10 h-full flex flex-col">
+<span class="text-xs font-bold tracking-[0.1em] text-on-primary-fixed-variant uppercase block mb-2">Equilibrium Balance</span>
+<h3 class="text-2xl font-bold font-headline text-white mb-6">Wellness Radar</h3>
+<!-- Radar Chart Placeholder with SVG -->
+<div class="flex-1 flex items-center justify-center p-4">
+<div class="relative w-64 h-64">
+<!-- Radar background lines -->
+<svg class="absolute inset-0 w-full h-full text-white/10" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="10" stroke="currentColor" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="25" stroke="currentColor" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="0.5"></circle>
+<line stroke="currentColor" stroke-width="0.5" x1="50" x2="50" y1="10" y2="90"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="10" x2="90" y1="50" y2="50"></line>
+<polygon fill="none" points="50,15 85,50 50,85 15,50" stroke="currentColor" stroke-width="0.5"></polygon>
+<!-- The Active Data Shape -->
+<polygon fill="rgba(20, 184, 166, 0.4)" points="50,25 75,50 50,70 30,50" stroke="#14b8a6" stroke-width="2"></polygon>
+</svg>
+<!-- Labels around radar -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-teal-400 tracking-widest">MENTAL</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-teal-400 tracking-widest">PHYSICAL</div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-bold text-teal-400 tracking-widest">SOCIAL</div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 rotate-90 text-[10px] font-bold text-teal-400 tracking-widest">SPIRITUAL</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-white/10 flex justify-between">
+<div class="text-center">
+<p class="text-white font-bold text-lg">7.2</p>
+<p class="text-[10px] text-on-primary-fixed-variant font-bold tracking-widest uppercase">Avg Level</p>
+</div>
+<div class="text-center">
+<p class="text-white font-bold text-lg">Steady</p>
+<p class="text-[10px] text-on-primary-fixed-variant font-bold tracking-widest uppercase">Pace</p>
+</div>
+<div class="text-center">
+<p class="text-white font-bold text-lg">92%</p>
+<p class="text-[10px] text-on-primary-fixed-variant font-bold tracking-widest uppercase">Consistency</p>
+</div>
+</div>
+</div>
+<!-- Ambient abstract background decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 blur-3xl -mr-16 -mt-16"></div>
+<div class="absolute bottom-0 left-0 w-32 h-32 bg-teal-500/10 blur-3xl -ml-16 -mb-16"></div>
+</div>
+<!-- Actionable Insight (Full Width) -->
+<div class="col-span-12 bg-white p-10 rounded-xl shadow-[0px_10px_40px_rgba(26,28,28,0.05)] flex items-center gap-12 border-l-8 border-teal-500">
+<div class="w-20 h-20 shrink-0 rounded-2xl bg-teal-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-teal-600">lightbulb</span>
+</div>
+<div class="flex-1 space-y-2">
+<h4 class="text-xl font-bold text-primary">The curator's tip of the day</h4>
+<p class="text-secondary leading-relaxed max-w-2xl">Your data suggests that <span class="font-bold text-primary">hydration levels</span> are directly impacting your <span class="font-bold text-primary">productivity score</span> in the afternoons. Try increasing water intake between 1:00 PM and 3:00 PM to sustain your current trend.</p>
+</div>
+<button class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors shrink-0">
+                        Create Goal
+                    </button>
+</div>
+</div>
+</div>
+<!-- Spacer for Bottom -->
+<div class="h-20"></div>
+</main>
+<!-- Mobile FAB -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 bg-primary rounded-full text-white shadow-2xl flex items-center justify-center active:scale-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</body></html>

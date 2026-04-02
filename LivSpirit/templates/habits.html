@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Living Spiritz — Habit Tracker{% endblock %}
+{% block page_title %}Habit Tracker{% endblock %}
+
+{% block content %}
+<!-- Hero Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+  <div class="max-w-xl">
+    <h3 class="text-4xl font-extrabold text-primary tracking-tight mb-4 leading-tight">Your Journey of Consistency</h3>
+    <p class="text-secondary leading-relaxed">Focus on small, daily wins. Transform your lifestyle through intentional repetition.</p>
+  </div>
+  <button onclick="document.getElementById('add-habit-modal').classList.remove('hidden')"
+    class="bg-primary-container text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 shadow-xl hover:opacity-90 active:scale-95 transition-all">
+    <span class="material-symbols-outlined">add_circle</span> Create New Habit
+  </button>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+  <!-- Habit Cards Column -->
+  <div class="lg:col-span-7 space-y-6">
+    <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-on-secondary-fixed-variant">Active Habits</h4>
+
+    {% if habits %}
+      {% for habit in habits %}
+      <div class="bg-surface-container-lowest p-8 rounded-[2rem] custom-shadow border border-outline-variant/10 transition-transform hover:-translate-y-1 duration-300">
+        <div class="flex items-start justify-between mb-8">
+          <div class="flex items-center gap-5">
+            <div class="w-14 h-14 bg-secondary-container rounded-2xl flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary">{{ habit.icon if habit.icon else 'checklist' }}</span>
+            </div>
+            <div>
+              <h5 class="text-xl font-bold text-primary">{{ habit.name }}</h5>
+              <p class="text-secondary text-sm">{{ habit.description if habit.description else 'Daily habit' }}</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-end">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Current Streak</span>
+            <span class="text-2xl font-extrabold text-primary">{{ habit.streak }} Days</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-6">
+          <div class="flex-1">
+            <div class="flex justify-between text-xs font-bold text-on-secondary-fixed-variant mb-2 uppercase tracking-tighter">
+              <span>Streak Progress</span>
+              <span>{{ habit.streak }} days</span>
+            </div>
+            <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full transition-all duration-700"
+                style="width: {{ [habit.streak * 10, 100] | min }}%"></div>
+            </div>
+          </div>
+          <!-- Check-off button -->
+          <form action="{{ url_for('check_habit', habit_id=habit.id) }}" method="POST">
+            <button type="submit"
+              class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all active:scale-90 shadow-sm
+              {{ 'bg-primary' if habit.last_completed and habit.last_completed.strftime('%Y-%m-%d') == today.strftime('%Y-%m-%d') else 'bg-surface-container hover:bg-primary/20' }}">
+              <span class="material-symbols-outlined {{ 'text-white' if habit.last_completed and habit.last_completed.strftime('%Y-%m-%d') == today.strftime('%Y-%m-%d') else 'text-secondary' }}"
+                style="font-variation-settings: 'FILL' 1;">check</span>
+            </button>
+          </form>
+        </div>
+        {% if habit.last_completed and habit.last_completed.strftime('%Y-%m-%d') == today.strftime('%Y-%m-%d') %}
+          <div class="mt-4 text-xs text-green-600 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">check_circle</span> Completed today!
+          </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="bg-surface-container-lowest p-12 rounded-[2rem] custom-shadow text-center">
+        <span class="material-symbols-outlined text-6xl text-secondary mb-4 block">checklist</span>
+        <h5 class="text-xl font-bold text-primary mb-2">No habits yet</h5>
+        <p class="text-secondary mb-6">Start building consistent routines by adding your first habit.</p>
+        <button onclick="document.getElementById('add-habit-modal').classList.remove('hidden')"
+          class="bg-primary-container text-white px-6 py-3 rounded-xl font-bold hover:opacity-90">
+          Add Your First Habit
+        </button>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Right Column: Stats & Activity Map -->
+  <div class="lg:col-span-5 space-y-8">
+    <!-- Activity Heatmap Calendar -->
+    <div class="bg-surface-container-lowest p-8 rounded-[2rem] custom-shadow">
+      <div class="flex items-center justify-between mb-8">
+        <h4 class="font-bold text-xl text-primary">Activity Map</h4>
+      </div>
+      <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+        {{ today.strftime('%B %Y') }}
+      </p>
+      <div class="grid grid-cols-7 gap-2">
+        {% for count_opacity in opacities %}
+          {% if count_opacity > 0 %}
+            <div class="aspect-square bg-primary rounded-md transition-opacity duration-300 hover:opacity-100" style="opacity: {{ count_opacity / 100.0 }}"></div>
+          {% else %}
+            <div class="aspect-square bg-surface-container rounded-md"></div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="mt-6 flex items-center justify-between text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+        <span>Less</span>
+        <div class="flex gap-1">
+          <div class="w-2.5 h-2.5 bg-primary-container opacity-20 rounded-sm"></div>
+          <div class="w-2.5 h-2.5 bg-primary-container opacity-40 rounded-sm"></div>
+          <div class="w-2.5 h-2.5 bg-primary-container opacity-60 rounded-sm"></div>
+          <div class="w-2.5 h-2.5 bg-primary-container opacity-80 rounded-sm"></div>
+          <div class="w-2.5 h-2.5 bg-primary-container opacity-100 rounded-sm"></div>
+        </div>
+        <span>More</span>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="bg-primary-container rounded-[2rem] p-8 text-white custom-shadow">
+      <h4 class="font-bold text-lg mb-6">Your Stats</h4>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <p class="text-4xl font-extrabold">{{ habits|length }}</p>
+          <p class="text-on-primary-container text-xs uppercase tracking-widest font-bold mt-1">Active Habits</p>
+        </div>
+        <div>
+          <p class="text-4xl font-extrabold">{{ habits|map(attribute='streak')|sum }}</p>
+          <p class="text-on-primary-container text-xs uppercase tracking-widest font-bold mt-1">Total Streak Days</p>
+        </div>
+        <div>
+          <p class="text-4xl font-extrabold">{{ habits|selectattr('last_completed')|list|length }}</p>
+          <p class="text-on-primary-container text-xs uppercase tracking-widest font-bold mt-1">Done Today</p>
+        </div>
+        <div>
+          <p class="text-4xl font-extrabold">{{ (habits|map(attribute='streak')|max) if habits else 0 }}</p>
+          <p class="text-on-primary-container text-xs uppercase tracking-widest font-bold mt-1">Best Streak</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motivational Quote -->
+    <div class="relative overflow-hidden rounded-[2rem] h-56 flex items-end p-8">
+      <img class="absolute inset-0 w-full h-full object-cover"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ0grUTOynRv6yAsTmHiu1CS7hQjia1IH4qdlKfeA6fLKH2NKjRtN-bU_Cf4s3M2fKhXNRyLlWAhg2h8Mu_AxUh98rQP3xsGM4ZfXzoF7jlcjRtQFHGvOl3R90AoUxOpsKhRoChyZhQgWyv3G9Noejh2-VV-Wx1ynItzP5Abdf45amlgOQBVTVCA-tXA3fAF-dpdKK88XtKYl_Fyk-uPIZBH-HLZTPA9EicWoUFIwkRqZCKglfeevV2UnET8YwdxedmPgU-z265Nne" alt="Forest"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+      <div class="relative z-10">
+        <span class="material-symbols-outlined text-white mb-2">format_quote</span>
+        <p class="text-white font-bold text-lg italic leading-relaxed mb-1">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
+        <p class="text-white/60 text-xs font-bold uppercase tracking-[0.2em]">Aristotle</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Habit Modal -->
+<div id="add-habit-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
+  <div class="bg-white rounded-[2rem] p-10 max-w-lg w-full custom-shadow">
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-2xl font-bold text-primary">Create New Habit</h3>
+      <button onclick="document.getElementById('add-habit-modal').classList.add('hidden')"
+        class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high">
+        <span class="material-symbols-outlined text-secondary">close</span>
+      </button>
+    </div>
+    <form action="{{ url_for('add_habit') }}" method="POST" class="space-y-6">
+      <div>
+        <label class="block text-sm font-bold text-primary mb-2">Habit Name</label>
+        <input type="text" name="name" required placeholder="e.g., Morning Meditation"
+          class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-fixed placeholder:text-outline/50"/>
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-primary mb-2">Description</label>
+        <input type="text" name="description" placeholder="e.g., 15 minutes of mindfulness"
+          class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-fixed placeholder:text-outline/50"/>
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-primary mb-2">Icon</label>
+        <select name="icon" class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-fixed">
+          <option value="self_improvement">🧘 Meditation</option>
+          <option value="water_drop">💧 Hydration</option>
+          <option value="auto_stories">📖 Reading</option>
+          <option value="directions_run">🏃 Exercise</option>
+          <option value="restaurant">🥗 Nutrition</option>
+          <option value="bedtime">😴 Sleep</option>
+          <option value="checklist">✅ General</option>
+        </select>
+      </div>
+      <div class="flex gap-4">
+        <button type="button" onclick="document.getElementById('add-habit-modal').classList.add('hidden')"
+          class="flex-1 py-3 bg-surface-container text-secondary rounded-xl font-bold hover:bg-surface-container-high">Cancel</button>
+        <button type="submit"
+          class="flex-1 py-3 bg-primary-container text-white rounded-xl font-bold hover:opacity-90">Create Habit</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Living Spiritz — Self Reflection Journal{% endblock %}
+{% block page_title %}Daily Reflection{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-12 gap-10">
+  <!-- Left: Prompts + Editor -->
+  <div class="col-span-12 lg:col-span-8 flex flex-col space-y-10">
+    <!-- Prompt Cards -->
+    <section class="grid grid-cols-2 gap-6">
+      {% for prompt in [('auto_awesome','What made today meaningful?'), ('favorite','What are you grateful for?'), ('psychology','What challenged you today?'), ('lightbulb','What did you learn?')] %}
+      <div class="bg-surface-container-lowest p-8 rounded-xl custom-shadow flex flex-col justify-between min-h-[140px] group hover:-translate-y-1 transition-transform duration-300 cursor-pointer"
+           onclick="document.getElementById('reflection-content').value += '{{ prompt[1] }}\n\n';">
+        <div>
+          <span class="material-symbols-outlined text-secondary mb-4 block">{{ prompt[0] }}</span>
+          <h3 class="font-bold text-lg text-primary leading-tight">{{ prompt[1] }}</h3>
+        </div>
+        <button class="text-[10px] font-bold tracking-widest uppercase text-on-primary-fixed-variant mt-4 flex items-center group-hover:text-primary transition-colors">
+          Use Prompt <span class="material-symbols-outlined text-xs ml-1">chevron_right</span>
+        </button>
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- Main Text Editor -->
+    <section class="bg-surface-container-lowest rounded-xl p-10 custom-shadow flex-grow flex flex-col min-h-[500px]">
+      <form action="{{ url_for('reflection') }}" method="POST" class="flex flex-col flex-grow">
+        <div class="mb-8">
+          <input name="title" type="text"
+            class="w-full bg-transparent border-none focus:ring-0 font-extrabold text-4xl text-primary placeholder-surface-container-highest tracking-tight"
+            placeholder="Title your reflection..."/>
+          <div class="flex items-center mt-4 text-on-primary-fixed-variant space-x-4">
+            <span class="flex items-center text-xs font-medium">
+              <span class="material-symbols-outlined text-sm mr-1">calendar_today</span>
+              {{ now_date }}
+            </span>
+          </div>
+        </div>
+        <textarea id="reflection-content" name="content"
+          class="w-full flex-grow bg-transparent border-none focus:ring-0 text-lg text-on-surface leading-relaxed placeholder-surface-container-highest resize-none min-h-[280px]"
+          placeholder="Start writing from the heart..."></textarea>
+        <div class="mt-8 pt-8 border-t border-surface-container flex items-center justify-between">
+          <div class="flex space-x-2">
+            <button type="button" class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+              <span class="material-symbols-outlined">format_bold</span>
+            </button>
+            <button type="button" class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+              <span class="material-symbols-outlined">format_italic</span>
+            </button>
+          </div>
+          <button type="submit"
+            class="premium-gradient text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition-all flex items-center space-x-2">
+            <span>Save Reflection</span>
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">done_all</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Right: Sidebar -->
+  <div class="col-span-12 lg:col-span-4 flex flex-col space-y-8">
+    <!-- Streak Card -->
+    <div class="bg-primary-container p-8 rounded-xl text-white custom-shadow">
+      <div class="flex justify-between items-center mb-6">
+        <h4 class="font-bold text-lg">Reflection Streak</h4>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold">{{ streak }} Days</span>
+      </div>
+      <p class="text-white/60 text-sm mb-4 leading-relaxed">You're building a powerful habit of self-awareness. Keep going!</p>
+      <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+        <div class="h-full bg-white rounded-full" style="width: {{ [streak * 10, 100]|min }}%"></div>
+      </div>
+      <div class="flex justify-between mt-2">
+        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Consistency</span>
+        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">{{ [streak * 10, 100]|min }}%</span>
+      </div>
+    </div>
+
+    <!-- Past Reflections -->
+    <section class="bg-surface-container-low rounded-xl p-8 flex-grow">
+      <h4 class="font-bold text-lg text-primary mb-6">Past Reflections</h4>
+      {% if reflections %}
+      <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
+        {% for r in reflections %}
+        <div class="bg-white p-5 rounded-xl custom-shadow hover:-translate-y-0.5 transition-transform cursor-pointer reflection-card"
+             data-title="{{ r.title }}" 
+             data-date="{{ r.created_at.strftime('%B %d, %Y') }}"
+             data-content="{{ r.content }}">
+          <div class="flex justify-between items-start mb-2">
+            <h5 class="font-bold text-primary text-sm">{{ r.title[:40] }}{% if r.title|length > 40 %}...{% endif %}</h5>
+            <span class="text-[10px] text-outline uppercase font-bold ml-2 flex-shrink-0">{{ r.created_at.strftime('%b %d') }}</span>
+          </div>
+          {% if r.content %}
+          <p class="text-xs text-on-surface-variant leading-relaxed italic">{{ r.content[:80] }}{% if r.content|length > 80 %}...{% endif %}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+        <div class="text-center py-10">
+          <span class="material-symbols-outlined text-4xl text-secondary mb-2 block">edit_note</span>
+          <p class="text-secondary text-sm">Your reflections will appear here.</p>
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Atmospheric Quote -->
+    <div class="relative rounded-xl overflow-hidden h-48 custom-shadow">
+      <img class="w-full h-full object-cover"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbfUxNCawIluWIZl36KNmD2dCHosnzxyRu223MFJMjpdH7ev6A0D9L7KUHQ27ervLZStWrNKjKbJP4aL1pBLtJxuD2cnGzPIGDbXBfvkSVX-nljy-wXSV0G0H4SxwvNfdFBjK2w4cOY2JPew_o08e7fPmFuTQkJ5rnovjPSwtjacgef6dfZI5HRRJPIa8gxFteNAtbFytPZ4OA7IqoEH2JY_0lmBJZcfxIoJ0-FMeCQK9uNI-ALej_HsNzkT0Xy5VB-So8zQXDzqpX" alt="Water"/>
+      <div class="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center p-6 text-center">
+        <p class="text-white font-bold text-lg leading-tight">"Silence is the sleep that nourishes wisdom."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Full Page Reflection Modal -->
+<div id="reflection-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
+  <div class="bg-surface-container-lowest rounded-[2rem] p-10 max-w-3xl w-full h-[80vh] custom-shadow flex flex-col relative">
+    <button onclick="document.getElementById('reflection-modal').classList.add('hidden')"
+      class="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+      <span class="material-symbols-outlined text-secondary">close</span>
+    </button>
+    <div class="flex items-center text-secondary mb-4 space-x-2">
+      <span class="material-symbols-outlined text-sm">calendar_today</span>
+      <span id="modal-date" class="text-xs font-bold uppercase tracking-widest"></span>
+    </div>
+    <h2 id="modal-title" class="text-4xl font-extrabold text-primary mb-8 border-b border-surface-container pb-6"></h2>
+    <div class="flex-grow overflow-y-auto pr-4">
+      <p id="modal-content" class="text-lg text-on-surface-variant leading-relaxed whitespace-pre-wrap"></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/reflection.js') }}"></script>
+{% endblock %}

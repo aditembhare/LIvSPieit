@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wellness Tools | Living Spiritz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#291802",
+                        "secondary-fixed": "#d2e7e6",
+                        "surface-tint": "#4d6171",
+                        "on-primary-fixed": "#081d2c",
+                        "on-primary-container": "#8095a7",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed-dim": "#e3c19d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#0c1e1f",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#384a4a",
+                        "primary-fixed-dim": "#b4c9dc",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "tertiary": "#241301",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#43474c",
+                        "secondary-container": "#d2e7e6",
+                        "secondary-fixed-dim": "#b6caca",
+                        "on-secondary-container": "#556868",
+                        "tertiary-fixed": "#ffddb9",
+                        "on-primary-fixed-variant": "#354959",
+                        "primary-container": "#192d3c",
+                        "tertiary-container": "#3b270e",
+                        "outline-variant": "#c3c7cc",
+                        "outline": "#73777c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c9dc",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#4f6262",
+                        "on-tertiary-fixed-variant": "#5a4227",
+                        "on-tertiary-container": "#ab8d6c",
+                        "on-surface": "#1a1c1c",
+                        "primary": "#031827",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#d0e5f9",
+                        "surface-dim": "#dadada",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9f9"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .breathing-pulse {
+            box-shadow: 0 0 0 0 rgba(79, 98, 98, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- SideNavBar (Authority: Shared Components JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-900 dark:bg-slate-950 font-manrope antialiased tracking-wide z-50 hidden md:flex">
+<div class="p-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-stone-50">The Sanctuary</h1>
+<p class="text-xs text-slate-400">Curate your life</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col flex-1 py-8 space-y-2">
+<!-- Mood Tracker -->
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all duration-200 hover:translate-x-1 duration-300" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">mood</span>
+<span>Mood Tracker</span>
+</div>
+</a>
+<!-- Wellness Tools (ACTIVE) -->
+<a class="bg-teal-800/30 text-stone-50 rounded-xl px-4 py-3 mx-2 transition-all duration-200 hover:translate-x-1 duration-300" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">self_care</span>
+<span class="font-semibold">Wellness Tools</span>
+</div>
+</a>
+<!-- Goal Management -->
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all duration-200 hover:translate-x-1 duration-300" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">chair</span>
+<span>Goal Management</span>
+</div>
+</a>
+<!-- Insights -->
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all duration-200 hover:translate-x-1 duration-300" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">analytics</span>
+<span>Insights</span>
+</div>
+</a>
+<!-- Community -->
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all duration-200 hover:translate-x-1 duration-300" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">groups</span>
+<span>Community</span>
+</div>
+</a>
+</nav>
+<div class="mt-auto pb-8 space-y-2">
+<div class="px-6 mb-4">
+<button class="w-full py-3 bg-gradient-to-br from-teal-500 to-teal-700 text-white rounded-xl font-bold text-sm">Start Breathing</button>
+</div>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<a class="text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 flex items-center gap-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopNavBar (Authority: Shared Components JSON) -->
+<header class="bg-stone-50/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 sticky z-40 shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto font-manrope text-stone-900 dark:text-stone-100">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-stone-50">Living Spiritz</span>
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-teal-700 dark:text-teal-300 font-semibold border-b-2 border-teal-600 pb-1" href="#">Tools</a>
+<a class="text-stone-500 dark:text-stone-400 font-medium hover:text-teal-600 dark:hover:text-teal-300 transition-colors" href="#">Library</a>
+<a class="text-stone-500 dark:text-stone-400 font-medium hover:text-teal-600 dark:hover:text-teal-300 transition-colors" href="#">Journal</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-fixed w-64" placeholder="Find a ritual..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-stone-600 hover:text-teal-600 transition-all">notifications</button>
+<button class="material-symbols-outlined text-stone-600 hover:text-teal-600 transition-all">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a woman with a calm expression in soft natural lighting, high-end wellness aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwK_xuVb13kV19VuwWOIEES_xhbrGpw2DoZcDOjUGj2giWMVGGR7zh7i4GArEz2UAmR4MFK-yPpyI7qzWmmUn1rBXYP708puEJqYq13xZb0He7HRFNFe9mQ_Y4AHcXpQeNoUtXuTPdFsfib0zgTH9t1ycn1H1p0TNSgWwcKY3Pq9_n0xz1nisQKaZSkm0_N_x6kfQHSS50lxEiB1sC44uFx2tZCDDc0wnNNpe3QUQuHnfEQG-44Bm_FmAjmBs_k95P9ycDSerWNPFw"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Body -->
+<div class="px-8 py-12 max-w-screen-2xl mx-auto">
+<!-- Page Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-5xl font-extrabold font-headline tracking-tight text-primary leading-tight">Wellness Tools</h2>
+<p class="text-secondary mt-4 text-lg max-w-md font-body">Cultivate presence and clarity through our curated collection of mindfulness instruments.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-outline">Current Streak</p>
+<p class="text-xl font-bold text-primary leading-none">12 Days</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Large Meditation Timer (Primary Anchor) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-[2rem] p-10 shadow-[0px_10px_40px_rgba(26,28,28,0.05)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">self_care</span>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-secondary mb-8">Guided Meditation</span>
+<h3 class="text-3xl font-bold text-primary mb-12">Deep Morning Presence</h3>
+<!-- Circular Progress Visual -->
+<div class="relative w-72 h-72 flex items-center justify-center mb-12">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="144" cy="144" fill="transparent" r="130" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="144" cy="144" fill="transparent" r="130" stroke="currentColor" stroke-dasharray="816" stroke-dashoffset="300" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-6xl font-extrabold font-headline tracking-tighter text-primary">12:45</span>
+<span class="text-sm font-medium text-secondary mt-1">minutes left</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<button class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-3xl">skip_previous</span>
+</button>
+<button class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-3xl">skip_next</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column Stack -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Pomodoro Focus Timer Card -->
+<div class="bg-primary-container text-white rounded-[2rem] p-8 relative overflow-hidden h-full">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-3xl text-secondary-fixed-dim">timer</span>
+<span class="bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Pomodoro</span>
+</div>
+<h4 class="text-2xl font-bold mb-2">Focus Sprint</h4>
+<p class="text-on-primary-container text-sm mb-8">Deep work session for your creative projects.</p>
+<!-- Mindful Progress Bar -->
+<div class="mb-8">
+<div class="flex justify-between text-xs font-bold mb-2 text-on-primary-container uppercase tracking-wider">
+<span>Progress</span>
+<span>80%</span>
+</div>
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-white w-4/5 rounded-full"></div>
+</div>
+</div>
+<button class="w-full py-4 bg-white text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+                                Resume Focus
+                            </button>
+</div>
+</div>
+<!-- Stress Relief Activities List -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<h4 class="text-xl font-bold text-primary mb-6">Stress Relief</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-teal-50 group-hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">forest</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-primary">Nature Sounds</p>
+<p class="text-xs text-secondary">Acoustic immersion</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-teal-600 transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-teal-50 group-hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">self_improvement</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-primary">Quick Stretch</p>
+<p class="text-xs text-secondary">5-minute release</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-teal-600 transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-teal-50 group-hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">air</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-primary">Air Purifier Ritual</p>
+<p class="text-xs text-secondary">Intentional breathing</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-teal-600 transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Breathing Exercise (Visual Focus) -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-12 bg-white rounded-[2rem] p-12 flex flex-col md:flex-row items-center justify-between gap-12 shadow-[0px_10px_40px_rgba(26,28,28,0.05)] overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-r from-teal-50 to-transparent opacity-30"></div>
+<div class="relative z-10 max-w-md">
+<span class="bg-teal-100 text-teal-800 px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block">Active Exercise</span>
+<h3 class="text-4xl font-extrabold font-headline text-primary mb-4 leading-tight">4-7-8 Breathing Technique</h3>
+<p class="text-secondary text-lg mb-8">Reduce anxiety and assist sleep with this rhythmic breathing pattern. Just follow the visual pulse.</p>
+<div class="flex gap-4">
+<button class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-container transition-all">Reset Cycle</button>
+<button class="px-8 py-4 bg-surface-container text-secondary font-bold rounded-xl hover:bg-surface-container-high transition-all">Switch Technique</button>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-64 h-64 rounded-full bg-teal-50 flex items-center justify-center relative">
+<!-- Static Breathing Pulse Visual -->
+<div class="absolute inset-0 rounded-full border-4 border-teal-200/50 scale-110"></div>
+<div class="absolute inset-0 rounded-full border-2 border-teal-100/50 scale-125"></div>
+<div class="w-48 h-48 rounded-full bg-teal-500/10 flex items-center justify-center">
+<div class="w-32 h-32 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-xl">
+<span class="text-xl font-bold uppercase tracking-widest">Inhale</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-3">
+<div class="w-3 h-3 rounded-full bg-teal-600"></div>
+<div class="w-3 h-3 rounded-full bg-teal-200"></div>
+<div class="w-3 h-3 rounded-full bg-teal-200"></div>
+<div class="w-3 h-3 rounded-full bg-teal-200"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Quote (Editorial Minimalist) -->
+<footer class="mt-20 text-center max-w-2xl mx-auto pb-12">
+<p class="text-2xl font-headline font-medium text-stone-400 italic">"The soul always knows what to do to heal itself. The challenge is to silence the mind."</p>
+<p class="mt-4 text-sm font-bold tracking-widest text-outline uppercase">— Caroline Myss</p>
+</footer>
+</div>
+</main>
+<!-- Mobile Navigation (Authority: Shared Components Logic) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-stone-50/90 backdrop-blur-md flex justify-around items-center py-4 px-6 z-50 border-t border-surface-container">
+<button class="flex flex-col items-center text-stone-400">
+<span class="material-symbols-outlined">mood</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-tighter">Mood</span>
+</button>
+<button class="flex flex-col items-center text-teal-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">self_care</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-tighter">Tools</span>
+</button>
+<button class="flex flex-col items-center text-stone-400">
+<span class="material-symbols-outlined">chair</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-tighter">Goals</span>
+</button>
+<button class="flex flex-col items-center text-stone-400">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-tighter">Insights</span>
+</button>
+<button class="flex flex-col items-center text-stone-400">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] mt-1 font-bold uppercase tracking-tighter">Social</span>
+</button>
+</nav>
+</body></html>

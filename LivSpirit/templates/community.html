@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Community | Living Spiritz{% endblock %}
+{% block page_title %}Community{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+  <div class="max-w-xl">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-primary mb-4 leading-tight">Shared Resonance</h1>
+    <p class="text-lg text-secondary leading-relaxed">Connect with others on the journey of intentional living. Share insights, seek balance, and breathe together.</p>
+  </div>
+  <button class="inline-flex items-center gap-3 bg-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:opacity-90 active:scale-95 transition-all">
+    <span class="material-symbols-outlined">add_circle</span> Start a Discussion
+  </button>
+</div>
+
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+  <!-- Main Thread Column -->
+  <div class="md:col-span-8 space-y-8">
+    <!-- Post Card 1 -->
+    <article class="bg-surface-container-lowest rounded-xl p-8 custom-shadow hover:bg-white transition-colors">
+      <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-4 ring-surface-container">
+            <img alt="Marcus Chen" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIOpXJeoRNVyAHFVklnDm-OYhlFbemqj2GnHgoONiUoDt4c39TVWCc-hsG8YwFZi2RJqIUQ-lSv455wsQxltJexhSubdsgbQaQ7syOLGZ-R-aEBjDMb2N1New-hgMzfJGXUXq6FyWwoxpBa417bIaQEvrFHhwG25b10Qef2HLB9TrmjnV4CwMaVK4Y0LlBi6CR0LUf4wlaKfZv7q51RJ3iKDHZlbYmLPjXHrINeaxO_FhZnfsTRue9pY3HdSd4P5lcUVSffuB3QgS0"/>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface">Marcus Chen</h4>
+            <p class="text-xs text-on-surface-variant font-label uppercase tracking-widest">2 hours ago • Mindfulness</p>
+          </div>
+        </div>
+        <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Pinned</span>
+      </div>
+      <h3 class="text-2xl font-bold text-primary mb-4 leading-snug">The art of the 'Digital Sunset': How I reclaimed my sleep</h3>
+      <p class="text-secondary leading-relaxed mb-8">I've been experimenting with a strict no-screens policy after 8 PM. The first few nights were restless, but now my deep sleep cycles have increased by 40%. Has anyone else tried specific evening rituals that don't involve a device?</p>
+      <div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+        <div class="flex items-center gap-6">
+          <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors group">
+            <span class="material-symbols-outlined text-secondary group-hover:text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            <span class="text-sm font-semibold">124</span>
+          </button>
+          <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-secondary">chat_bubble</span>
+            <span class="text-sm font-semibold">48</span>
+          </button>
+        </div>
+        <button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+          <span class="material-symbols-outlined">share</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- Post Card 2 -->
+    <article class="bg-surface-container-lowest rounded-xl p-8 custom-shadow group">
+      <div class="flex items-start gap-4 mb-6">
+        <div class="w-12 h-12 rounded-full overflow-hidden ring-4 ring-surface-container">
+          <img alt="Elena Rodriguez" class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvfTCYKyldF-WvvtdHT06zOMz8MvDgwL44eH4NWZEupzbUcJQ3YIdnK6SNnWmFlgAtlwGjrbTRQhn4ExstaXlWs__zso74wWUPM0kEwYr0GbS-BqoOTZtR7CgnuVAbXczfEO88O7qxxKTXnbSABswVrNlph7UUBD88ZJSIN-ooUxMqgKnx9VqIk_P0PWgQNtD2heJsv6RpiSpSTcezp1dLH71eeLzdR0pEccrxoiL_mNg3NoCBhuakP2MTQGZ5O8IrSMc8pqBzIuRi"/>
+        </div>
+        <div>
+          <h4 class="font-bold text-on-surface">Elena Rodriguez</h4>
+          <p class="text-xs text-on-surface-variant font-label uppercase tracking-widest">5 hours ago • Rituals</p>
+        </div>
+      </div>
+      <h3 class="text-2xl font-bold text-primary mb-4 leading-snug">Small joys in urban spaces: Finding the 'wild' in the city</h3>
+      <div class="rounded-xl overflow-hidden mb-6 aspect-video">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZRNfyFrLfXotz_YHskh3D1eTrp8ugFRQG4srTINSH-QuDQf07u-JT9rd3tgn93L7ukQF6JuNnpfAV5WjHB2qRIlbR-VZxUdPHz8nZae-l0nu96tUfL-u_JUylR7FGUZs1qiQpvgJselmjXSL6XR2dgYKEE_EyzuD97TyUA_2CSOAOJh6APBC4xgr2LM_hcqAfREd2xOtSjLERZB6g42urIOOzlNgeveOAZxQj-4rVoMGYBDrWo8E0s-lxkxbcqNlEyBMRfxYn1TDs"
+          alt="Forest"/>
+      </div>
+      <p class="text-secondary leading-relaxed mb-8">Even in the heart of the city, I've found that paying attention to the way the moss grows on old brick or the flight patterns of local birds helps ground my morning walk. What small 'wild' things have you noticed today?</p>
+      <div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+        <div class="flex items-center gap-6">
+          <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            <span class="text-sm font-semibold">89</span>
+          </button>
+          <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">chat_bubble</span>
+            <span class="text-sm font-semibold">12</span>
+          </button>
+        </div>
+        <button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+          <span class="material-symbols-outlined">bookmark</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- Post Card 3 -->
+    <article class="bg-surface-container-lowest rounded-xl p-8 custom-shadow">
+      <div class="flex items-start gap-4 mb-6">
+        <div class="w-12 h-12 rounded-full overflow-hidden ring-4 ring-surface-container bg-secondary-container flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">person</span>
+        </div>
+        <div>
+          <h4 class="font-bold text-on-surface">Aditya K.</h4>
+          <p class="text-xs text-on-surface-variant font-label uppercase tracking-widest">1 day ago • Mindfulness</p>
+        </div>
+      </div>
+      <h3 class="text-2xl font-bold text-primary mb-4 leading-snug">30 days of journaling — what I discovered about myself</h3>
+      <p class="text-secondary leading-relaxed mb-8">Started the reflection challenge last month with skepticism. Now I can't sleep without writing. The patterns I've noticed about my energy, mood, and creativity are remarkable. The data doesn't lie.</p>
+      <div class="flex items-center gap-6 pt-6 border-t border-surface-container-low">
+        <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+          <span class="text-sm font-semibold">203</span>
+        </button>
+        <button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+          <span class="material-symbols-outlined">chat_bubble</span>
+          <span class="text-sm font-semibold">67</span>
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="md:col-span-4 space-y-8">
+    <!-- Trending Topics -->
+    <section class="bg-primary-container rounded-xl p-6 text-on-primary custom-shadow overflow-hidden relative">
+      <div class="absolute -right-4 -top-4 w-24 h-24 bg-teal-500/10 rounded-full blur-2xl"></div>
+      <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary-fixed-dim">trending_up</span> Trending Soul
+      </h3>
+      <ul class="space-y-5">
+        {% for category, title, count in [
+          ('Rituals', 'Morning Sunlight Exposure', 42),
+          ('Nutrition', 'Mindful Eating Practices', 28),
+          ('Philosophy', 'Stoicism in the Modern World', 56),
+          ('Sleep', 'Digital Sunset Protocol', 34)
+        ] %}
+        <li class="group cursor-pointer">
+          <p class="text-xs text-on-primary-fixed-variant font-label tracking-widest uppercase mb-1">{{ category }}</p>
+          <h5 class="font-semibold text-surface group-hover:text-secondary-fixed-dim transition-colors">{{ title }}</h5>
+          <p class="text-xs text-on-primary-container">{{ count }} active thinkers</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- Community Stats -->
+    <section class="bg-surface-container-low rounded-xl p-6">
+      <h3 class="text-xl font-bold text-primary mb-6">Our Collective Breath</h3>
+      <div class="space-y-6">
+        <div>
+          <div class="flex justify-between text-sm mb-2 font-semibold text-secondary">
+            <span>Community Goal: Quiet Hours</span>
+            <span>72%</span>
+          </div>
+          <div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[72%] rounded-full"></div>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-surface-container">
+          <p class="text-sm text-secondary leading-relaxed italic">"Together, we have logged 1,240 hours of silent meditation this week."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curators to Follow -->
+    <section class="bg-white rounded-xl p-6 custom-shadow border border-outline-variant/10">
+      <h3 class="text-xl font-bold text-primary mb-6">Curators to Follow</h3>
+      <div class="space-y-5">
+        {% for name, specialty, img_src in [
+          ('Dr. Julian V.', 'Sleep Science', 'https://lh3.googleusercontent.com/aida-public/AB6AXuABYMGaG-s40y9rsnV4zEWi0PD2OsIkPXi_vWT4EZzPrthK-b7kZTPyY0CAlbe0An-VE8TNN8x48xZtcTIAUt4ShKIS40ZVzu2uB1jU0JG0eima1OqOgamf7Ahz_Gkzoud9xLjbi7x1MuCZFOrkzEJ0GPo-783xN39-3XI-BWe2D_NJn4vzFqbeSOjCr6QHJXoFs4882CZ3FQfRMltZtyLe1BZ3xbtXl-YoyjMBUSIBwHBGJ5YD5bKHcdaV-It9XV9SXn510hB-TwdR'),
+          ('Sasha Kim', 'Botanical Rituals', 'https://lh3.googleusercontent.com/aida-public/AB6AXuB89sQiBfzm4WsI45mHd1GL6MJ2f8ZrC780tDZQgjdP2ai037Y61wD96FqSYXd0ogDlCJty3lzcy_3bwvtxuOa4tbgKSa6pOR36Xv4lkTgywFqF-2LYNElJq6crBmrLMdX9mW93MdTvD30ouLX02JhzRvThFCD6cfDZoqTzurgfkiXMcjYHoeSWFvzgAjMoHeg9hwc8Cu6W94Rkf30fw2qdNO0ze5BNWAlahVPpSRYyU59ybTfIn_Pe_md_wIqy2uXLuYW9_HYUZfJv')
+        ] %}
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg overflow-hidden">
+              <img alt="{{ name }}" class="w-full h-full object-cover" src="{{ img_src }}"/>
+            </div>
+            <div class="text-sm">
+              <p class="font-bold">{{ name }}</p>
+              <p class="text-secondary text-xs">{{ specialty }}</p>
+            </div>
+          </div>
+          <button class="text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors">Follow</button>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

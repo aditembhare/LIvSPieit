@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>{% block title %}Living Spiritz{% endblock %}</title>
+<script src="{{ url_for('static', filename='js/tailwind-config.js') }}"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style id="extra-style">{% block extra_style %}{% endblock %}</style>
+{% block head_extra %}{% endblock %}
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="fixed top-4 right-4 z-[100] space-y-2">
+      {% for category, message in messages %}
+        <div class="bg-primary-container text-white px-6 py-3 rounded-xl shadow-lg text-sm font-semibold flex items-center gap-2 animate-pulse">
+          <span class="material-symbols-outlined text-sm">check_circle</span> {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% if current_page not in ['home', 'login', 'register'] %}
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-[#031827] flex flex-col py-8 space-y-1 shadow-2xl">
+  <div class="px-6 mb-8">
+    <a href="{{ url_for('home') }}" class="block">
+      <h1 class="text-white font-bold text-xl tracking-tighter">Living Spiritz</h1>
+      <p class="text-slate-500 text-xs mt-1">Wellness Platform</p>
+    </a>
+  </div>
+  <nav class="flex-1 space-y-1 px-2">
+    <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'dashboard' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">dashboard</span> Dashboard
+    </a>
+    <a href="{{ url_for('habits') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'habits' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">checklist</span> Habits
+    </a>
+    <a href="{{ url_for('mood') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'mood' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">sentiment_satisfied</span> Mood
+    </a>
+    <a href="{{ url_for('reflection') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'reflection' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">edit_note</span> Reflection
+    </a>
+    <a href="{{ url_for('tools') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'tools' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">self_care</span> Tools
+    </a>
+    <a href="{{ url_for('goals') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'goals' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">emoji_events</span> Goals
+    </a>
+    <a href="{{ url_for('insights') }}" class="flex items-center px-4 py-3 rounded-xl font-medium text-sm tracking-wide uppercase transition-all {{ 'nav-active' if current_page == 'insights' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3">monitoring</span> Insights
+    </a>
+
+  </nav>
+  <div class="px-4 mt-4 border-t border-white/10 pt-4 space-y-1">
+    <a href="{{ url_for('settings') }}" class="flex items-center px-4 py-2 text-xs font-medium uppercase tracking-widest rounded-xl transition-all {{ 'nav-active' if current_page == 'settings' else 'text-slate-400 hover:text-white hover:bg-[#192D3C]/50' }}">
+      <span class="material-symbols-outlined mr-3 text-sm">settings</span> Settings
+    </a>
+    <a href="{{ url_for('logout') }}" class="text-slate-400 hover:text-white hover:bg-red-900/30 flex items-center px-4 py-2 text-xs font-medium uppercase tracking-widest rounded-xl transition-all">
+      <span class="material-symbols-outlined mr-3 text-sm">logout</span> Logout
+    </a>
+  </div>
+</aside>
+
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-64 right-0 h-20 bg-white/80 backdrop-blur-md z-30 flex justify-between items-center px-10 shadow-sm">
+  <h2 class="font-bold text-2xl text-slate-900 tracking-tight">{% block page_title %}{% endblock %}</h2>
+  <div class="flex items-center gap-4">
+
+    <!-- User Dropdown -->
+    <div class="relative" id="user-menu-wrapper">
+      <a id="user-menu-btn" href="{{ url_for('settings') }}"
+              class="flex items-center gap-3 pl-3 pr-4 py-2 rounded-xl hover:bg-surface-container transition-colors">
+        <div class="w-9 h-9 rounded-full premium-gradient flex items-center justify-center text-white font-bold text-sm uppercase">
+          {{ current_user[0] if current_user else 'U' }}
+        </div>
+        <div class="hidden sm:block text-left">
+          <p class="text-sm font-semibold text-slate-900 leading-none">{{ current_user.split(' ')[0] if current_user else 'User' }}</p>
+        </div>
+      </a>
+  </div>
+</header>
+{% endif %}
+
+<!-- Flash Messages (inner pages) -->
+{% if current_page not in ['home', 'login', 'register'] %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="fixed top-24 right-6 z-[200] space-y-2" style="margin-left:16rem">
+      {% for category, message in messages %}
+        <div class="px-5 py-3 rounded-xl shadow-lg text-sm font-semibold flex items-center gap-2 animate-fade-in
+          {% if category == 'error' %}bg-red-500 text-white
+          {% elif category == 'warning' %}bg-amber-500 text-white
+          {% else %}bg-[#192D3C] text-white{% endif %}">
+          <span class="material-symbols-outlined text-sm">{% if category == 'error' %}error{% elif category == 'warning' %}warning{% else %}check_circle{% endif %}</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% endif %}
+{% endwith %}
+{% endif %}
+
+<!-- Main content wrapper -->
+<div class="{% if current_page not in ['home','login','register'] %}ml-64 pt-20{% endif %} min-h-screen">
+  <div class="{% if current_page not in ['home','login','register'] %}max-w-7xl mx-auto px-8 py-10{% endif %}">
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+<!-- Footer (Conditional) -->
+{% if current_page != 'home' %}
+<footer class="ml-64 border-t border-slate-100 bg-slate-50 py-10">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+    <p class="text-xs text-slate-500">© 2024 Living Spiritz Wellness. All rights reserved.</p>
+    <div class="flex gap-8 mt-4 md:mt-0">
+      <a class="text-xs text-slate-500 hover:text-slate-800 hover:underline" href="#">Privacy Policy</a>
+      <a class="text-xs text-slate-500 hover:text-slate-800 hover:underline" href="#">Terms of Service</a>
+      <a class="text-xs text-slate-500 hover:text-slate-800 hover:underline" href="#">Contact Us</a>
+    </div>
+  </div>
+</footer>
+{% endif %}
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

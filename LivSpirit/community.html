@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Community | Living Spiritz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed": "#291802",
+              "secondary-fixed": "#d2e7e6",
+              "surface-tint": "#4d6171",
+              "on-primary-fixed": "#081d2c",
+              "on-primary-container": "#8095a7",
+              "on-secondary": "#ffffff",
+              "on-background": "#1a1c1c",
+              "background": "#f9f9f9",
+              "surface-container-high": "#e8e8e8",
+              "tertiary-fixed-dim": "#e3c19d",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#0c1e1f",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#384a4a",
+              "primary-fixed-dim": "#b4c9dc",
+              "surface-container-highest": "#e2e2e2",
+              "inverse-on-surface": "#f1f1f1",
+              "tertiary": "#241301",
+              "surface-bright": "#f9f9f9",
+              "on-surface-variant": "#43474c",
+              "secondary-container": "#d2e7e6",
+              "secondary-fixed-dim": "#b6caca",
+              "on-secondary-container": "#556868",
+              "tertiary-fixed": "#ffddb9",
+              "on-primary-fixed-variant": "#354959",
+              "primary-container": "#192d3c",
+              "tertiary-container": "#3b270e",
+              "outline-variant": "#c3c7cc",
+              "outline": "#73777c",
+              "on-tertiary": "#ffffff",
+              "inverse-primary": "#b4c9dc",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "secondary": "#4f6262",
+              "on-tertiary-fixed-variant": "#5a4227",
+              "on-tertiary-container": "#ab8d6c",
+              "on-surface": "#1a1c1c",
+              "primary": "#031827",
+              "inverse-surface": "#2f3131",
+              "surface-variant": "#e2e2e2",
+              "primary-fixed": "#d0e5f9",
+              "surface-dim": "#dadada",
+              "surface-container": "#eeeeee",
+              "error": "#ba1a1a",
+              "surface-container-low": "#f3f3f3",
+              "surface-container-lowest": "#ffffff",
+              "surface": "#f9f9f9"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="docked full-width top-0 sticky z-50 bg-stone-50/80 dark:bg-slate-950/80 backdrop-blur-md shadow-[0px_10px_40px_rgba(26,28,28,0.05)]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-stone-50 brand-font">Living Spiritz</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-stone-500 dark:text-stone-400 font-medium hover:text-teal-600 dark:hover:text-teal-300 transition-colors" href="#">Mood Tracker</a>
+<a class="text-stone-500 dark:text-stone-400 font-medium hover:text-teal-600 dark:hover:text-teal-300 transition-colors" href="#">Wellness Tools</a>
+<a class="text-teal-700 dark:text-teal-300 font-semibold border-b-2 border-teal-600" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-fixed w-64 transition-all" placeholder="Search conversations..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden ml-2 ring-2 ring-primary-fixed-dim/20">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a woman with a gentle expression in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACgWaF8hs570m9LtF6gxkpp0mGSOHfVYhpAYgQFIis98d6k6KSfPidAFN_RjcBzXFCZzHcFlBTg9vtm1rNinukQGRe3l9MsRjwmgfpwngA-SfUBSe7Sa_dl184uNzTSphaujTIV7_umo4pEcUlXZiDMIwBQCwR9cV-P39zakVXJS_RFYEeoOlC6alhphjdU7CllJHIIpnXAgZGLkckfoDT45cXYjqyDRxocpf1wYcT7scLO2VAUaEoT3pngcPbzGsHrRX782IZZoqI"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Shell -->
+<div class="flex max-w-screen-2xl mx-auto">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-80px)] w-64 sticky top-20 bg-slate-900 py-8 space-y-2 font-manrope antialiased tracking-wide">
+<div class="px-6 mb-8">
+<h2 class="text-xl font-bold text-stone-50">The Sanctuary</h2>
+<p class="text-xs text-slate-400 mt-1 uppercase tracking-widest">Curate your life</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 hover:bg-slate-800/50 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">mood</span>
+<span>Mood Tracker</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 hover:bg-slate-800/50 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">self_care</span>
+<span>Wellness Tools</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 hover:bg-slate-800/50 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">chair</span>
+<span>Goal Management</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 hover:bg-slate-800/50 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Insights</span>
+</a>
+<a class="flex items-center gap-3 bg-teal-800/30 text-stone-50 rounded-xl px-4 py-3 mx-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-semibold">Community</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-3 rounded-xl font-semibold shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span>Start Breathing</span>
+</button>
+</div>
+<div class="pt-8 border-t border-slate-800/50 mt-6">
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-sm">Help Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-stone-200 px-4 py-3 mx-2 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Content Canvas -->
+<main class="flex-1 px-4 sm:px-8 py-10 lg:pl-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="max-w-xl">
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-primary mb-4 leading-tight">Shared Resonance</h1>
+<p class="text-lg text-secondary leading-relaxed">Connect with others on the journey of intentional living. Share insights, seek balance, and breathe together.</p>
+</div>
+<button class="inline-flex items-center gap-3 bg-primary-container text-on-primary px-8 py-4 rounded-xl font-bold shadow-xl hover:scale-[1.02] active:scale-95 transition-all self-start md:self-auto group">
+<span class="material-symbols-outlined text-teal-400">add_circle</span>
+                    Start a Discussion
+                </button>
+</div>
+<!-- Bento Grid Conversations -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Main Thread Column -->
+<div class="md:col-span-8 space-y-8">
+<!-- Post Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl p-8 shadow-[0px_10px_40px_rgba(26,28,28,0.05)] hover:bg-white transition-colors">
+<div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden ring-4 ring-surface-container">
+<img alt="Marcus Chen" class="w-full h-full object-cover" data-alt="close-up portrait of a man with spectacles in a bright studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIOpXJeoRNVyAHFVklnDm-OYhlFbemqj2GnHgoONiUoDt4c39TVWCc-hsG8YwFZi2RJqIUQ-lSv455wsQxltJexhSubdsgbQaQ7syOLGZ-R-aEBjDMb2N1New-hgMzfJGXUXq6FyWwoxpBa417bIaQEvrFHhwG25b10Qef2HLB9TrmjnV4CwMaVK4Y0LlBi6CR0LUf4wlaKfZv7q51RJ3iKDHZlbYmLPjXHrINeaxO_FhZnfsTRue9pY3HdSd4P5lcUVSffuB3QgS0"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Marcus Chen</h4>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest">2 hours ago • Mindfulness</p>
+</div>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Pinned</span>
+</div>
+<h3 class="text-2xl font-bold text-primary mb-4 leading-snug">The art of the 'Digital Sunset': How I reclaimed my sleep</h3>
+<p class="text-secondary leading-relaxed mb-8">I've been experimenting with a strict no-screens policy after 8 PM. The first few nights were restless, but now my deep sleep cycles have increased by 40%. Has anyone else tried specific evening rituals that don't involve a device?</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-teal-600 group-hover:fill-current">favorite</span>
+<span class="text-sm font-semibold">124</span>
+</button>
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-teal-600">chat_bubble</span>
+<span class="text-sm font-semibold">48</span>
+</button>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</article>
+<!-- Post Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl p-8 shadow-[0px_10px_40px_rgba(26,28,28,0.05)] group">
+<div class="flex items-start gap-4 mb-6">
+<div class="w-12 h-12 rounded-full overflow-hidden ring-4 ring-surface-container">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover" data-alt="softly lit portrait of a young woman with natural sunlight filtering through her hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvfTCYKyldF-WvvtdHT06zOMz8MvDgwL44eH4NWZEupzbUcJQ3YIdnK6SNnWmFlgAtlwGjrbTRQhn4ExstaXlWs__zso74wWUPM0kEwYr0GbS-BqoOTZtR7CgnuVAbXczfEO88O7qxxKTXnbSABswVrNlph7UUBD88ZJSIN-ooUxMqgKnx9VqIk_P0PWgQNtD2heJsv6RpiSpSTcezp1dLH71eeLzdR0pEccrxoiL_mNg3NoCBhuakP2MTQGZ5O8IrSMc8pqBzIuRi"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Elena Rodriguez</h4>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest">5 hours ago • Rituals</p>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-primary mb-4 leading-snug">Small joys in urban spaces: Finding the 'wild' in the city</h3>
+<div class="rounded-xl overflow-hidden mb-6 aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="sunlight filtering through a dense green forest canopy onto a mossy forest floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZRNfyFrLfXotz_YHskh3D1eTrp8ugFRQG4srTINSH-QuDQf07u-JT9rd3tgn93L7ukQF6JuNnpfAV5WjHB2qRIlbR-VZxUdPHz8nZae-l0nu96tUfL-u_JUylR7FGUZs1qiQpvgJselmjXSL6XR2dgYKEE_EyzuD97TyUA_2CSOAOJh6APBC4xgr2LM_hcqAfREd2xOtSjLERZB6g42urIOOzlNgeveOAZxQj-4rVoMGYBDrWo8E0s-lxkxbcqNlEyBMRfxYn1TDs"/>
+</div>
+<p class="text-secondary leading-relaxed mb-8">Even in the heart of the city, I've found that paying attention to the way the moss grows on old brick or the flight patterns of local birds helps ground my morning walk. What small 'wild' things have you noticed today?</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-teal-600">favorite</span>
+<span class="text-sm font-semibold">89</span>
+</button>
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-teal-600">chat_bubble</span>
+<span class="text-sm font-semibold">12</span>
+</button>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Sidebar column -->
+<div class="md:col-span-4 space-y-8">
+<!-- Trending Topics -->
+<section class="bg-primary-container rounded-xl p-6 text-on-primary shadow-lg overflow-hidden relative">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-teal-500/10 rounded-full blur-2xl"></div>
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-400">trending_up</span>
+                            Trending Soul
+                        </h3>
+<ul class="space-y-4">
+<li class="group cursor-pointer">
+<p class="text-xs text-on-primary-fixed-variant font-label tracking-widest uppercase mb-1">Rituals</p>
+<h5 class="font-semibold text-surface group-hover:text-teal-300 transition-colors">Morning Sunlight Exposure</h5>
+<p class="text-xs text-on-primary-container">42 active thinkers</p>
+</li>
+<li class="group cursor-pointer">
+<p class="text-xs text-on-primary-fixed-variant font-label tracking-widest uppercase mb-1">Nutrition</p>
+<h5 class="font-semibold text-surface group-hover:text-teal-300 transition-colors">Mindful Eating Practices</h5>
+<p class="text-xs text-on-primary-container">28 active thinkers</p>
+</li>
+<li class="group cursor-pointer">
+<p class="text-xs text-on-primary-fixed-variant font-label tracking-widest uppercase mb-1">Philosophy</p>
+<h5 class="font-semibold text-surface group-hover:text-teal-300 transition-colors">Stoicism in the Modern World</h5>
+<p class="text-xs text-on-primary-container">56 active thinkers</p>
+</li>
+</ul>
+</section>
+<!-- Community Stats/Mindful Progress -->
+<section class="bg-surface-container-low rounded-xl p-6">
+<h3 class="text-xl font-bold text-primary mb-6">Our Collective Breath</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-sm mb-2 font-semibold text-secondary">
+<span>Community Goal: Quiet Hours</span>
+<span>72%</span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[72%] rounded-full"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-container">
+<p class="text-sm text-secondary leading-relaxed italic italic">"Together, we have logged 1,240 hours of silent meditation this week."</p>
+</div>
+</div>
+</section>
+<!-- Featured Curators -->
+<section class="bg-white rounded-xl p-6 shadow-sm border border-outline-variant/10">
+<h3 class="text-xl font-bold text-primary mb-6">Curators to Follow</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden">
+<img alt="Dr. Julian V." class="w-full h-full object-cover" data-alt="professional portrait of a man with a friendly gaze outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABYMGaG-s40y9rsnV4zEWi0PD2OsIkPXi_vWT4EZzPrthK-b7kZTPyY0CAlbe0An-VE8TNN8x48xZtcTIAUt4ShKIS40ZVzu2uB1jU0JG0eima1OqOgamf7Ahz_Gkzoud9xLjbi7x1MuCZFOrkzEJ0GPo-783xN39-3XI-BWe2D_NJn4vzFqbeSOjCr6QHJXoFs4882CZ3FQfRMltZtyLe1BZ3xbtXl-YoyjMBUSIBwHBGJ5YD5bKHcdaV-It9XV9SXn510hB-TwdR"/>
+</div>
+<div class="text-sm">
+<p class="font-bold">Dr. Julian V.</p>
+<p class="text-secondary text-xs">Sleep Science</p>
+</div>
+</div>
+<button class="text-xs font-bold uppercase tracking-widest text-teal-600 hover:text-teal-700">Follow</button>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden">
+<img alt="Sasha Kim" class="w-full h-full object-cover" data-alt="close-up of a smiling woman with dark hair in a bright indoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB89sQiBfzm4WsI45mHd1GL6MJ2f8ZrC780tDZQgjdP2ai037Y61wD96FqSYXd0ogDlCJty3lzcy_3bwvtxuOa4tbgKSa6pOR36Xv4lkTgywFqF-2LYNElJq6crBmrLMdX9mW93MdTvD30ouLX02JhzRvThFCD6cfDZoqTzurgfkiXMcjYHoeSWFvzgAjMoHeg9hwc8Cu6W94Rkf30fw2qdNO0ze5BNWAlahVPpSRYyU59ybTfIn_Pe_md_wIqy2uXLuYW9_HYUZfJv"/>
+</div>
+<div class="text-sm">
+<p class="font-bold">Sasha Kim</p>
+<p class="text-secondary text-xs">Botanical Rituals</p>
+</div>
+</div>
+<button class="text-xs font-bold uppercase tracking-widest text-teal-600 hover:text-teal-700">Follow</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button for Mobile -->
+<button class="md:hidden fixed bottom-6 right-6 w-16 h-16 bg-primary-container text-on-primary rounded-full shadow-2xl flex items-center justify-center z-[60] active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl">edit_note</span>
+</button>
+</body></html>

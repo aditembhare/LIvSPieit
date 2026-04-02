@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% block title %}Goal Management | Living Spiritz{% endblock %}
+{% block page_title %}Intentional Milestones{% endblock %}
+
+{% block content %}
+<!-- Mission Control Hero -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-surface-container-highest p-10 rounded-[2rem] custom-shadow">
+  <div class="max-w-2xl">
+    <div class="flex items-center gap-3 mb-4 text-secondary">
+      <span class="material-symbols-outlined text-amber-500">explore</span>
+      <span class="font-bold tracking-widest uppercase text-xs">Mission Control</span>
+    </div>
+    <h2 class="text-4xl lg:text-5xl font-extrabold text-primary mb-4 tracking-tight leading-tight">Intentional Milestones</h2>
+    <p class="text-secondary text-lg leading-relaxed">Focus your energy on what truly matters. Track your velocity and curate your growth.</p>
+  </div>
+  <button onclick="document.getElementById('add-goal-modal').classList.remove('hidden')"
+    class="premium-gradient text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-lg hover:opacity-90 transition-all hover:-translate-y-1">
+    <span class="material-symbols-outlined">add</span>
+    New Milestone
+  </button>
+</div>
+
+<!-- Stats / Velocity Section -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+  <div class="bg-surface-container-lowest p-6 rounded-3xl custom-shadow border border-outline-variant/10 flex flex-col justify-between h-32">
+    <span class="text-[10px] tracking-[0.15em] uppercase font-bold text-secondary">Active Milestones</span>
+    <span class="text-4xl font-extrabold text-primary">{{ stats.active }}</span>
+  </div>
+  <div class="bg-surface-container-lowest p-6 rounded-3xl custom-shadow border-t-4 border-t-green-500 flex flex-col justify-between h-32">
+    <span class="text-[10px] tracking-[0.15em] uppercase font-bold text-secondary">Achieved</span>
+    <span class="text-4xl font-extrabold text-primary">{{ stats.achieved }}</span>
+  </div>
+  <div class="bg-surface-container-lowest p-6 rounded-3xl custom-shadow border-t-4 border-t-amber-500 flex flex-col justify-between h-32">
+    <span class="text-[10px] tracking-[0.15em] uppercase font-bold text-secondary">Daily Focus</span>
+    <span class="text-4xl font-extrabold text-primary">{{ stats.daily_focus }}</span>
+  </div>
+  <div class="bg-surface-container-lowest p-6 rounded-3xl custom-shadow border border-outline-variant/10 flex flex-col justify-between h-32">
+    <span class="text-[10px] tracking-[0.15em] uppercase font-bold text-secondary">Avg. Completion</span>
+    <div class="flex items-baseline gap-1">
+      <span class="text-4xl font-extrabold text-primary">{{ stats.avg_completion }}</span>
+      <span class="text-sm font-semibold text-secondary">%</span>
+    </div>
+  </div>
+</section>
+
+<!-- Macro for rendering Goal Cards -->
+{% macro render_goal_card(goal, is_focus=False) %}
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] custom-shadow border {{ 'border-primary/20 bg-primary/5' if is_focus else 'border-outline-variant/10' }} flex flex-col justify-between min-h-[320px] relative overflow-hidden group">
+  {% if is_focus %}
+    <div class="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl -mr-24 -mt-24 pointer-events-none"></div>
+  {% endif %}
+  
+  <div class="relative z-10 flex-1 flex flex-col">
+    <!-- Header -->
+    <div class="flex justify-between items-start mb-6">
+      <span class="text-[10px] tracking-[0.15em] uppercase font-bold text-secondary bg-surface-container-low px-3 py-1.5 rounded-lg">{{ goal.category }}</span>
+      
+      {% if goal.days_remaining is not none %}
+        <div class="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase {{ 'text-red-500 bg-red-50' if goal.days_remaining <= 3 else 'text-primary bg-surface-container-low' }} px-3 py-1.5 rounded-lg shadow-sm">
+          <span class="material-symbols-outlined text-[14px]">schedule</span>
+          <span>{{ goal.days_remaining }}d left</span>
+        </div>
+      {% endif %}
+    </div>
+    
+    <h4 class="text-2xl font-black text-primary mb-6 leading-snug tracking-tight">{{ goal.title }}</h4>
+    
+    <!-- Progress Info -->
+    <div class="flex items-center gap-6 mb-8 mt-auto">
+      <!-- Circular Progress -->
+      <div class="relative w-[72px] h-[72px] flex items-center justify-center flex-shrink-0">
+        <svg class="w-full h-full transform -rotate-90">
+          <circle class="text-surface-container-high" cx="36" cy="36" fill="transparent" r="32" stroke="currentColor" stroke-width="6"></circle>
+          <circle class="text-primary transition-all duration-1000 ease-out" cx="36" cy="36" fill="transparent" r="32" stroke="currentColor"
+            stroke-dasharray="201"
+            stroke-dashoffset="{{ (201 * (100 - goal.percent)) / 100 }}"
+            stroke-width="6" stroke-linecap="round"></circle>
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-sm font-black text-primary">{{ goal.percent }}<span class="text-[10px] text-secondary">%</span></span>
+        </div>
+      </div>
+      
+      <!-- Values -->
+      <div>
+        <div class="text-3xl font-black text-primary tracking-tighter">{{ goal.current_value }}</div>
+        <p class="text-sm font-semibold text-secondary">of {{ goal.target_value }} {{ goal.unit }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Quick Actions Footer -->
+  <div class="border-t border-surface-container pt-5 relative z-10">
+    <form action="{{ url_for('update_goal', goal_id=goal.id) }}" method="POST" class="flex gap-3">
+      <input type="hidden" name="action" value="increment" id="action-{{ goal.id }}">
+      
+      <button type="submit" name="increment_value" value="1" class="flex-1 bg-white hover:bg-surface-container-low transition-colors text-primary text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2 custom-shadow border border-outline-variant/10">
+        <span class="material-symbols-outlined text-[18px]">add</span>1
+      </button>
+      
+      <button type="submit" name="increment_value" value="5" class="flex-1 bg-white hover:bg-surface-container-low transition-colors text-primary text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2 custom-shadow border border-outline-variant/10">
+        <span class="material-symbols-outlined text-[18px]">add</span>5
+      </button>
+      
+      <!-- Custom Update Toggle -->
+      <button type="button" onclick="document.getElementById('custom-update-{{ goal.id }}').classList.toggle('hidden')" class="w-12 bg-surface-container-high hover:bg-surface-container-highest transition-colors text-primary rounded-xl flex items-center justify-center">
+        <span class="material-symbols-outlined text-sm">edit</span>
+      </button>
+    </form>
+    
+    <!-- Custom Update input hidden by default -->
+    <div id="custom-update-{{ goal.id }}" class="hidden mt-4 animate-fade-in">
+      <form action="{{ url_for('update_goal', goal_id=goal.id) }}" method="POST" class="flex gap-3">
+        <input type="hidden" name="action" value="set">
+        <input type="number" name="current_value" value="{{ goal.current_value }}" min="0" max="{{ goal.target_value }}"
+          class="flex-1 text-sm bg-surface-container-low border border-outline-variant/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/20"/>
+        <button type="submit" class="bg-primary text-white px-6 rounded-xl text-sm font-bold hover:opacity-90 shadow-md">Set</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+<!-- Daily Focus Section -->
+{% if daily_focus %}
+<div class="mb-16">
+  <div class="flex items-center gap-4 mb-8">
+    <div class="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center">
+      <span class="material-symbols-outlined text-amber-500" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+    </div>
+    <h3 class="text-3xl font-extrabold text-primary tracking-tight">Daily Focus</h3>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for goal in daily_focus %}
+      {{ render_goal_card(goal, is_focus=True) }}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- Active Goals -->
+<div class="mb-20">
+  <div class="flex items-center gap-4 mb-8">
+    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+      <span class="material-symbols-outlined text-primary">target</span>
+    </div>
+    <h3 class="text-3xl font-extrabold text-primary tracking-tight">Active Goals</h3>
+  </div>
+  
+  {% if active_goals %}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for goal in active_goals %}
+      {% if goal.priority != 3 %}
+        {{ render_goal_card(goal, is_focus=False) }}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+    {% if not daily_focus %}
+      <div class="bg-surface-container-lowest rounded-[2rem] p-16 text-center custom-shadow border border-outline-variant/10">
+        <div class="w-24 h-24 rounded-full bg-surface-container mx-auto flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-5xl text-secondary opacity-50">wind_power</span>
+        </div>
+        <h4 class="text-2xl font-bold text-primary mb-3">Clear Skies</h4>
+        <p class="text-secondary max-w-sm mx-auto text-lg">You have no active goals right now. Ready to set a new intentional milestone?</p>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+<!-- Achieved Goals -->
+{% if achieved_goals %}
+<div class="mb-16">
+  <div class="flex items-center gap-4 mb-8">
+    <div class="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
+      <span class="material-symbols-outlined text-green-600 text-[18px]">verified</span>
+    </div>
+    <h3 class="text-xl font-bold text-secondary tracking-wide uppercase">Achieved</h3>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75 grayscale-[20%]">
+    {% for goal in achieved_goals %}
+      <div class="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/10 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] tracking-widest uppercase font-bold text-secondary bg-surface-container px-2 py-1 rounded-md">{{ goal.category }}</span>
+          <h4 class="text-xl font-bold text-primary my-3">{{ goal.title }}</h4>
+          <p class="text-sm text-green-600 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">done_all</span> 100% Completed
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- Add Goal Modal -->
+<div id="add-goal-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] p-10 max-w-xl w-full shadow-2xl my-8 relative">
+    <button onclick="document.getElementById('add-goal-modal').classList.add('hidden')"
+      class="absolute top-8 right-8 w-12 h-12 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+      <span class="material-symbols-outlined text-secondary">close</span>
+    </button>
+    
+    <div class="mb-8">
+      <h3 class="text-3xl font-extrabold text-primary mb-2 tracking-tight">Set Milestone</h3>
+      <p class="text-secondary font-medium">Define your target and focus your energy.</p>
+    </div>
+    
+    <form action="{{ url_for('goals') }}" method="POST" class="space-y-6">
+      <div>
+        <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Goal Title</label>
+        <input type="text" name="title" required placeholder="e.g. Master the Piano, Run 50km"
+          class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-base font-semibold text-primary transition-colors focus:outline-none"/>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Category</label>
+          <select name="category" class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-sm font-semibold text-primary focus:outline-none appearance-none cursor-pointer">
+            <option>Personal Growth</option>
+            <option>Physical Wellness</option>
+            <option>Mental Clarity</option>
+            <option>Financial</option>
+            <option>Creative</option>
+            <option>Relationships</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Priority</label>
+          <select name="priority" class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-sm font-semibold text-primary focus:outline-none appearance-none cursor-pointer">
+            <option value="1">Low - Background</option>
+            <option value="2" selected>Medium - Normal</option>
+            <option value="3">High - Daily Focus</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Target</label>
+          <input type="number" name="target_value" value="100" min="1"
+            class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-base font-semibold text-primary focus:outline-none"/>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Unit</label>
+          <input type="text" name="unit" placeholder="e.g. days, km, books"
+            class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-base font-semibold text-primary focus:outline-none"/>
+        </div>
+      </div>
+      
+      <div>
+        <label class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-2">Deadline (Optional)</label>
+        <input type="date" name="deadline"
+          class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary/20 rounded-2xl px-5 py-4 text-sm font-semibold text-secondary focus:outline-none"/>
+      </div>
+      
+      <div class="pt-6">
+        <button type="submit" class="w-full py-5 premium-gradient text-white rounded-2xl font-bold hover:shadow-xl hover:opacity-90 transition-all flex justify-center items-center gap-3">
+          <span class="material-symbols-outlined">rocket_launch</span>
+          Launch Milestone
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

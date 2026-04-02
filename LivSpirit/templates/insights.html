@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}Insights & Analytics | Living Spiritz{% endblock %}
+{% block page_title %}Insights & Analytics{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="mb-12">
+  <h1 class="text-5xl font-extrabold text-primary tracking-tight mb-3">Your Wellness Insights</h1>
+  <p class="text-secondary text-lg max-w-lg">Data-driven clarity on your personal growth journey. Understand the patterns that shape your wellbeing.</p>
+</header>
+
+<!-- Top Stats Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+  {% set stat_items = [
+    ('monitoring', wellness_score|string + '/100', 'Wellness Score', 'bg-primary-container', 'text-white'),
+    ('checklist', data.top_habits|length|string, 'Active Habits', 'bg-secondary-container', 'text-on-secondary-container'),
+    ('edit_note', data.reflections_month|string, 'Reflections (30d)', 'bg-surface-container-lowest', 'text-primary'),
+    ('emoji_events', data.goals|selectattr("percent", "ge", 100)|list|length|string, 'Goals Achieved', 'bg-surface-container-lowest', 'text-primary')
+  ] %}
+  {% for icon, value, label, bg, text_col in stat_items %}
+  <div class="{{ bg }} p-6 rounded-[1.5rem] custom-shadow flex flex-col gap-3">
+    <span class="material-symbols-outlined {{ text_col }} opacity-70">{{ icon }}</span>
+    <span class="text-4xl font-extrabold {{ text_col }}">{{ value }}</span>
+    <span class="text-[10px] uppercase tracking-widest font-bold {{ text_col }} opacity-70">{{ label }}</span>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <!-- Habit Streaks Chart -->
+  <div class="lg:col-span-7 bg-surface-container-lowest rounded-[1.5rem] p-8 custom-shadow">
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h2 class="text-xl font-bold text-primary mb-1">Habit Streak Leaderboard</h2>
+        <p class="text-secondary text-sm">Your most consistent habits</p>
+      </div>
+      <a href="{{ url_for('habits') }}" class="text-sm font-bold text-primary border-b border-primary/20">View All →</a>
+    </div>
+    {% if data.top_habits %}
+    <div class="space-y-6">
+      {% for habit in data.top_habits %}
+      {% set max_streak = data.top_habits[0].streak if data.top_habits[0].streak > 0 else 1 %}
+      <div class="flex items-center gap-4">
+        <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+          <span class="text-xs font-extrabold text-primary">{{ loop.index }}</span>
+        </div>
+        <div class="flex-1">
+          <div class="flex justify-between text-sm font-semibold text-primary mb-2">
+            <span>{{ habit.name }}</span>
+            <span class="text-secondary font-bold">{{ habit.streak }}d</span>
+          </div>
+          <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+            <div class="h-full rounded-full transition-all duration-700"
+              style="width: {{ [habit.streak * 10, 100]|min }}%; background: {{ '#031827' if loop.index == 1 else '#4f6262' }}"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <div class="text-center py-12">
+        <span class="material-symbols-outlined text-5xl text-secondary mb-3 block">checklist</span>
+        <p class="text-secondary">No habits tracked yet.</p>
+        <a href="{{ url_for('habits') }}" class="text-primary font-bold underline text-sm mt-2 inline-block">Add habits →</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Right Column -->
+  <div class="lg:col-span-5 space-y-8">
+    <!-- Mood Distribution -->
+    <div class="bg-surface-container-lowest rounded-[1.5rem] p-8 custom-shadow">
+      <h2 class="text-xl font-bold text-primary mb-6">Mood Breakdown</h2>
+      {% set mood_icons = {'happy': '😊', 'calm': '🧘', 'neutral': '😐', 'stressed': '⚡', 'sad': '😔'} %}
+      {% if data.mood_dist %}
+      {% set total_moods = data.mood_dist|map(attribute='cnt')|sum %}
+      <div class="space-y-4">
+        {% for entry in data.mood_dist %}
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">{{ mood_icons.get(entry.mood_level, '😐') }}</span>
+          <div class="flex-1">
+            <div class="flex justify-between text-sm font-semibold text-primary mb-1">
+              <span class="capitalize">{{ entry.mood_level }}</span>
+              <span class="text-secondary">{{ entry.cnt }}x</span>
+            </div>
+            <div class="h-2.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" style="width: {{ (entry.cnt / total_moods * 100)|round }}%"></div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+        <div class="text-center py-8">
+          <span class="material-symbols-outlined text-4xl text-secondary mb-2 block">mood</span>
+          <p class="text-secondary text-sm">No mood entries yet.</p>
+          <a href="{{ url_for('mood') }}" class="text-primary font-bold underline text-sm">Log a mood →</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Goals Progress -->
+    <div class="bg-primary-container rounded-[1.5rem] p-8 text-white custom-shadow">
+      <h2 class="text-xl font-bold mb-6">Goals Progress</h2>
+      {% if data.goals %}
+      <div class="space-y-5">
+        {% for goal in data.goals %}
+        <div>
+          <div class="flex justify-between text-sm font-semibold mb-2">
+            <span class="text-surface">{{ goal.title[:25] }}{% if goal.title|length > 25 %}...{% endif %}</span>
+            <span class="text-on-primary-container">{{ goal.percent }}%</span>
+          </div>
+          <div class="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-white rounded-full" style="width: {{ goal.percent }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+        <p class="text-on-primary-container text-sm">No goals set yet. <a href="{{ url_for('goals') }}" class="underline font-bold text-white">Add one →</a></p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Weekly Activity Chart -->
+  <div class="lg:col-span-12 bg-surface-container-lowest rounded-[1.5rem] p-8 custom-shadow">
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h2 class="text-xl font-bold text-primary mb-1">Weekly Wellness Activity</h2>
+        <p class="text-secondary text-sm">Combined view of your habits, mood, and reflection activity</p>
+      </div>
+    </div>
+    <div class="flex justify-between items-end h-48 gap-3">
+      {% for i in range(7) %}
+      <div class="flex-1 flex flex-col items-center gap-2">
+        <div class="w-full relative" style="height: 160px; display:flex; align-items:flex-end;">
+          <div class="w-full rounded-xl transition-all duration-700 hover:opacity-80"
+               style="height: {{ data.weekly_heights[i] }}%; background: {{ '#031827' if i == 6 else '#192D3C' }}; opacity: {{ 0.4 + (data.weekly_heights[i] / 200) }};"></div>
+        </div>
+        <span class="text-[10px] font-bold text-secondary uppercase tracking-widest">{{ data.weekly_days[i] }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Reflection Journal Stats -->
+  <div class="lg:col-span-6 bg-surface-container-lowest rounded-[1.5rem] p-8 custom-shadow">
+    <h2 class="text-xl font-bold text-primary mb-2">Reflection Journal</h2>
+    <p class="text-secondary text-sm mb-6">You've written {{ data.reflections_month }} entries this month.</p>
+    <div class="flex items-center gap-6">
+      <div class="relative w-32 h-32">
+        <svg class="w-full h-full -rotate-90">
+          <circle cx="64" cy="64" r="56" fill="transparent" stroke="#e8e8e8" stroke-width="8"/>
+          <circle cx="64" cy="64" r="56" fill="transparent" stroke="#031827"
+            stroke-dasharray="351.8"
+            stroke-dashoffset="{{ 351.8 * (1 - [data.reflections_month / 30, 1]|min) }}"
+            stroke-linecap="round" stroke-width="8"/>
+        </svg>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <span class="text-2xl font-extrabold text-primary">{{ data.reflections_month }}</span>
+          <span class="text-[10px] text-secondary uppercase">entries</span>
+        </div>
+      </div>
+      <div>
+        <p class="text-3xl font-extrabold text-primary">{{ ((data.reflections_month / 30) * 100)|round|int }}%</p>
+        <p class="text-secondary text-sm">of 30-day goal</p>
+        <a href="{{ url_for('reflection') }}" class="mt-4 inline-block px-4 py-2 premium-gradient text-white text-xs font-bold rounded-lg hover:opacity-90">Write Today →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wellness Score Gauge -->
+  <div class="lg:col-span-6 bg-surface-container-lowest rounded-[1.5rem] p-8 custom-shadow flex flex-col items-center justify-center text-center">
+    <h2 class="text-xl font-bold text-primary mb-6">Overall Wellness Score</h2>
+    <div class="relative w-48 h-48">
+      <svg class="w-full h-full -rotate-90">
+        <circle cx="96" cy="96" r="80" fill="transparent" stroke="#e8e8e8" stroke-width="12"/>
+        <circle cx="96" cy="96" r="80" fill="transparent" stroke="#031827"
+          stroke-dasharray="502.6"
+          stroke-dashoffset="{{ 502.6 * (1 - wellness_score / 100) }}"
+          stroke-linecap="round" stroke-width="12"/>
+      </svg>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <span class="text-4xl font-extrabold text-primary">{{ wellness_score }}</span>
+        <span class="text-[10px] uppercase font-bold text-secondary">{{ 'Optimal' if wellness_score >= 80 else 'Growing' if wellness_score >= 50 else 'Needs Care' }}</span>
+      </div>
+    </div>
+    <p class="text-secondary text-sm mt-6 max-w-xs">Your score is calculated from habits, mood logs, reflections, and goal progress.</p>
+  </div>
+</div>
+{% endblock %}

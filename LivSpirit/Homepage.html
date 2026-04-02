@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Living Spiritz - Transform Your Lifestyle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "background": "#f9f9f9",
+              "primary-container": "#192d3c",
+              "secondary-fixed-dim": "#b6caca",
+              "on-primary-container": "#8095a7",
+              "tertiary": "#241301",
+              "surface-container-high": "#e8e8e8",
+              "tertiary-fixed-dim": "#e3c19d",
+              "secondary-container": "#d2e7e6",
+              "inverse-surface": "#2f3131",
+              "on-primary-fixed": "#081d2c",
+              "on-secondary-fixed-variant": "#384a4a",
+              "primary": "#031827",
+              "primary-fixed": "#d0e5f9",
+              "surface-bright": "#f9f9f9",
+              "tertiary-fixed": "#ffddb9",
+              "on-surface": "#1a1c1c",
+              "on-tertiary-fixed": "#291802",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#d2e7e6",
+              "on-primary-fixed-variant": "#354959",
+              "surface-container": "#eeeeee",
+              "tertiary-container": "#3b270e",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#b4c9dc",
+              "primary-fixed-dim": "#b4c9dc",
+              "on-surface-variant": "#43474c",
+              "on-tertiary-fixed-variant": "#5a4227",
+              "secondary": "#4f6262",
+              "surface-container-low": "#f3f3f3",
+              "outline-variant": "#c3c7cc",
+              "outline": "#73777c",
+              "error": "#ba1a1a",
+              "surface": "#f9f9f9",
+              "on-secondary-container": "#556868",
+              "on-secondary-fixed": "#0c1e1f",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e2e2e2",
+              "surface-container-highest": "#e2e2e2",
+              "inverse-on-surface": "#f1f1f1",
+              "on-tertiary": "#ffffff",
+              "surface-tint": "#4d6171",
+              "on-background": "#1a1c1c",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#ab8d6c",
+              "surface-dim": "#dadada"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #031827 0%, #192D3C 100%);
+        }
+        .atmospheric-shadow {
+            box-shadow: 0px 10px 40px rgba(26, 28, 28, 0.05);
+        }
+        body {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold text-slate-900 tracking-tighter font-headline">Living Spiritz</div>
+<div class="hidden md:flex items-center space-gap-8 gap-x-8">
+<a class="font-manrope font-semibold tracking-tight text-slate-900 border-b-2 border-slate-900 pb-1" href="#">Dashboard</a>
+<a class="font-manrope font-semibold tracking-tight text-slate-500 hover:text-slate-800 transition-opacity" href="#">Community</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="hidden md:flex items-center gap-3 ml-4">
+<button class="px-5 py-2 text-sm font-semibold text-slate-900 hover:opacity-80 transition-opacity">Login</button>
+<button class="signature-gradient px-6 py-2.5 rounded-xl text-sm font-bold text-white atmospheric-shadow hover:opacity-90 active:scale-95 duration-150">Sign Up</button>
+</div>
+</div>
+</div>
+<div class="bg-slate-100 h-px w-full"></div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-16">
+<div class="w-full lg:w-1/2 z-10">
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-primary leading-[1.1] mb-6 tracking-tight">
+                    Transform Your <span class="text-secondary">Lifestyle</span> with Living Spiritz
+                </h1>
+<p class="text-on-surface-variant text-xl md:text-2xl leading-relaxed mb-10 max-w-xl">
+                    A self-growth and mindfulness platform designed to bring clarity, peace, and purpose to your daily routine.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="signature-gradient px-8 py-4 rounded-xl text-lg font-bold text-white atmospheric-shadow hover:opacity-90 active:scale-95 duration-150">
+                        Start Your Journey
+                    </button>
+<button class="px-8 py-4 rounded-xl text-lg font-bold text-primary-container border-2 border-primary-container/10 hover:bg-surface-container-low transition-colors">
+                        Explore Tools
+                    </button>
+</div>
+</div>
+<div class="w-full lg:w-1/2 relative">
+<div class="aspect-square relative rounded-[3rem] overflow-hidden atmospheric-shadow">
+<img alt="Minimalist meditation illustration" class="w-full h-full object-cover" data-alt="A minimalist, serene scene of a person meditating in a high-ceilinged, airy room with large windows showing a soft dawn landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzezxEXYSDafK7lG-p0NPn2IBHlyno9Yg4SIdxcq_af2t5xWpD2gYXIU1hZ-_zktxU6WTpc74CR_7g7FDa5Dyd0EY-WP6kt1d1p_SfTkrZ3mPMpp3JB0U22IxLLn1He4pyz6w5_6jL8vz_7zMFc0NzLKG_2zfPNBT2cuy-VCE6_pIAiMk17xaoAnDR5wrlZt8ocJA1OqQCLkmz_UaUceG_2zSzfpxECmmomsXQ7IXDU4obbVbX_WnW7dYXK-lbKSC7Xet6819qiEcK"/>
+<div class="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
+</div>
+<!-- Decorative Floater -->
+<div class="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-2xl atmospheric-shadow max-w-[200px] border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-headline font-bold text-primary">Wellness Score</span>
+</div>
+<div class="text-3xl font-extrabold text-primary">84/100</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-primary w-[84%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="py-24 bg-surface-container">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16 text-center max-w-2xl mx-auto">
+<h2 class="font-headline text-4xl font-bold text-primary mb-4">Curated Tools for Clarity</h2>
+<p class="text-on-surface-variant">Our platform integrates five core pillars of mindfulness to support your personal evolution.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6">
+<!-- Habit Tracker -->
+<div class="md:col-span-3 lg:col-span-4 bg-surface-container-lowest p-8 rounded-3xl atmospheric-shadow flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary">checklist</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-primary mb-3">Habit Tracker</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Building consistency through intentional daily actions and visual progress monitoring.</p>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-primary"></div>
+<span class="text-xs font-medium text-on-surface">Daily Meditation</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-secondary-fixed-dim"></div>
+<span class="text-xs font-medium text-on-surface">Mindful Movement</span>
+</div>
+</div>
+</div>
+<!-- Mood Journal -->
+<div class="md:col-span-3 lg:col-span-4 bg-primary-container p-8 rounded-3xl atmospheric-shadow text-white relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white">sentiment_satisfied</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-3">Mood Journal</h3>
+<p class="text-on-primary-container text-sm leading-relaxed">Map your emotional landscape with tonal tagging and AI-assisted reflection prompts.</p>
+</div>
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+</div>
+</div>
+<!-- Wellness Analytics -->
+<div class="md:col-span-6 lg:col-span-4 bg-surface-container-lowest p-8 rounded-3xl atmospheric-shadow flex flex-col lg:row-span-2">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-primary mb-3">Wellness Analytics</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Data-driven insights into your growth patterns. Understand the "why" behind your "what".</p>
+<div class="mt-auto h-48 bg-surface-container-low rounded-2xl flex items-end justify-between p-4 gap-2">
+<div class="w-full bg-primary/20 h-[30%] rounded-t-lg"></div>
+<div class="w-full bg-primary/40 h-[50%] rounded-t-lg"></div>
+<div class="w-full bg-primary/60 h-[80%] rounded-t-lg"></div>
+<div class="w-full bg-primary h-[65%] rounded-t-lg"></div>
+<div class="w-full bg-secondary h-[95%] rounded-t-lg"></div>
+</div>
+</div>
+<!-- Self Reflection -->
+<div class="md:col-span-6 lg:col-span-8 bg-surface-container-lowest p-8 rounded-3xl atmospheric-shadow flex flex-col md:flex-row gap-8 items-center">
+<div class="md:w-1/2">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed-dim/30 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary-container">edit_note</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-primary mb-3">Self Reflection</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">A sanctuary for deep thought. Guided prompts help you navigate your inner world with honesty.</p>
+</div>
+<div class="md:w-1/2 w-full h-40 bg-surface-container-low rounded-2xl p-6 overflow-hidden">
+<div class="h-4 w-3/4 bg-on-surface/5 rounded mb-3"></div>
+<div class="h-4 w-full bg-on-surface/5 rounded mb-3"></div>
+<div class="h-4 w-1/2 bg-on-surface/5 rounded"></div>
+</div>
+</div>
+<!-- Meditation Tools -->
+<div class="md:col-span-6 lg:col-span-12 bg-secondary-container p-8 rounded-3xl atmospheric-shadow flex flex-col md:flex-row items-center gap-10">
+<div class="flex-1">
+<h3 class="font-headline text-2xl font-bold text-on-secondary-container mb-4">Meditation Tools</h3>
+<p class="text-on-secondary-container/80 text-lg leading-relaxed max-w-xl">Curated sonic experiences and breathwork guides designed to ground you in the present moment.</p>
+</div>
+<button class="bg-primary-container text-white px-8 py-4 rounded-full font-bold flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        Listen Now
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="space-y-16">
+<div class="flex gap-8 group">
+<div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-surface-container-lowest atmospheric-shadow flex items-center justify-center font-headline text-3xl font-extrabold text-primary border border-outline-variant/10">01</div>
+<div>
+<h4 class="font-headline text-2xl font-bold text-primary mb-3">Track</h4>
+<p class="text-on-surface-variant leading-relaxed">Record your habits and moods effortlessly. Our interface is designed to be frictionless, taking less than 60 seconds of your day.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-surface-container-lowest atmospheric-shadow flex items-center justify-center font-headline text-3xl font-extrabold text-primary border border-outline-variant/10">02</div>
+<div>
+<h4 class="font-headline text-2xl font-bold text-primary mb-3">Reflect</h4>
+<p class="text-on-surface-variant leading-relaxed">Engage with guided journaling prompts that respond to your data, helping you uncover subconscious patterns.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-surface-container-lowest atmospheric-shadow flex items-center justify-center font-headline text-3xl font-extrabold text-primary border border-outline-variant/10">03</div>
+<div>
+<h4 class="font-headline text-2xl font-bold text-primary mb-3">Improve</h4>
+<p class="text-on-surface-variant leading-relaxed">Apply personalized wellness strategies based on your unique analytics to achieve sustainable personal growth.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="font-headline text-5xl font-extrabold text-primary mb-8 tracking-tight">The Loop of <span class="text-secondary">Continuous</span> Growth.</h2>
+<div class="relative rounded-3xl overflow-hidden aspect-video atmospheric-shadow">
+<img alt="Person writing in journal" class="w-full h-full object-cover" data-alt="Close-up of a person's hands writing in a premium paper journal on a clean desk with a small succulent and soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxUZZ0Qm0MD67D-A8zBAp5QtTQMCWlP0h-HOMR8qyXLuCK4TUnc3u0XhneK59TKyjv4msN65gyX4zod8VVx5KJMzAhMH_Q-k9FmLv6eopXzaMpZQvFn6Nyj8OrzKovJZo2F2EeH4NCNyLjO5OHvMLo1DQYPccZaIRjTPnSM2NFG3cK1hfTkVwXXRkYnwDBc_RvzhrcKke0IUdfdmw42sHQ2IYqjcrI5RMY29yHVnzPXTes8h8IhU083Ah3HyHgFL_1bLQSroMtW_7l"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-24 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-8">
+<h2 class="font-headline text-4xl font-bold text-primary mb-16 text-center">Voices from the Sanctuary</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest p-10 rounded-3xl atmospheric-shadow">
+<div class="flex text-secondary-container mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface leading-relaxed italic mb-8">"Living Spiritz shifted my perspective from 'fixing myself' to 'caring for myself'. The aesthetic alone calms my nervous system."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Portrait of a young woman with a calm expression, professional lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7p7OegHkzPF1Bdm807oX3-k4e58nYEAfPYlkn8DN0ek9nXXqzD-8m57mnsKaJygUFBd4gJdv7L0yC0gwTS_J1B6f_mqe3CR42LyE0uR27rZ_Yno6VnNGIMAlmxz85ahzlq5Mlof8Qo3ZwUjXZcD6jZZVSlxX8CRWQwhijvtMbPAWA3Q42eF3MthPC_fsKDjAojDiAVDy0g15xYoSOWzhvsM2_87u4cb35X7eoEcy_5QHPHmaqe6iPpDsA8rkpIJOk8FYDLQvJZTMP"/>
+</div>
+<div>
+<div class="font-bold text-primary">Sarah J.</div>
+<div class="text-xs text-on-surface-variant">Creative Director</div>
+</div>
+</div>
+</div>
+<div class="bg-primary-container p-10 rounded-3xl atmospheric-shadow text-white mt-8 md:mt-0">
+<div class="flex text-primary-fixed mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-surface leading-relaxed italic mb-8">"The data visualization is stunning. It’s the first time I can actually see the correlation between my sleep, mood, and productivity."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-800 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Portrait of a man with a beard smiling warmly, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwRMpFc8Xr-0gHesRu8HklhuJBgQKNHX9cIcXyhzPWE8sjK9Ui83CkyygoKg5M-GwrnoKLOLIwQUvyIy3Vds2vztyHUBaWCxV5cVqscj-k76UwO_CwFaYJ4KJHYMwZAvjvttcMvJPUxeGUZb6Jsl8kbhKY7nRe1lNalhmCpovoTBbdUnSb_8g3r0xHUYxn0_Y9r4V94AHjTPTsUuZLrSbrF1TdX9gKg-9ohR6_w_GhZZrgC4DAmck_gtKvT74PlbtsZfZ6Lj_xsOHN"/>
+</div>
+<div>
+<div class="font-bold text-surface">David M.</div>
+<div class="text-xs text-on-primary-container">Software Engineer</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-3xl atmospheric-shadow">
+<div class="flex text-secondary-container mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface leading-relaxed italic mb-8">"Finally a wellness app that doesn't feel like another job. It breathes with you. The reflection prompts are actually meaningful."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Portrait of a serene looking woman in her 30s, natural lighting, outdoor background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5BVpqdM7QEpGBrX2amyKJk1HnfWbK3L2gSNCkLr3FIi6_L4DoxvjN1q6JfLBtCWQEXMyUbAlCG46XyTqKon70bKVSAxBq428qYAZNB3RZQXAvzI4QazGpym-JnR245ZAxevFRL5XqcjtyphTUaZrfFuBaSTew63amvrA8Az-Pxv82_aj36C3gNzpIqbUU8YBJ_ICkxA1nF7QXoIL5qCsBPCnqfwFytrX_Icq0aGoqzY2zzLKxFeQ2wUnlp96cFXu8C7d7MVUXTx8g"/>
+</div>
+<div>
+<div class="font-bold text-primary">Elena R.</div>
+<div class="text-xs text-on-surface-variant">Yoga Instructor</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-slate-100 bg-slate-50">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+<div class="mb-6 md:mb-0">
+<p class="font-inter text-xs text-slate-500">© 2024 Living Spiritz Wellness. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-inter text-xs text-slate-500 hover:text-slate-800 hover:underline decoration-slate-300" href="#">Privacy Policy</a>
+<a class="font-inter text-xs text-slate-500 hover:text-slate-800 hover:underline decoration-slate-300" href="#">Terms of Service</a>
+<a class="font-inter text-xs text-slate-500 hover:text-slate-800 hover:underline decoration-slate-300" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

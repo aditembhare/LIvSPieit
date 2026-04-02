@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}Wellness Tools | Living Spiritz{% endblock %}
+{% block page_title %}Wellness Tools{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+  <div>
+    <h2 class="text-5xl font-extrabold tracking-tight text-primary leading-tight">Wellness Tools</h2>
+    <p class="text-secondary mt-4 text-lg max-w-md">Cultivate presence and clarity through our curated collection of mindfulness instruments.</p>
+  </div>
+  <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 custom-shadow">
+    <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed-variant">
+      <span class="material-symbols-outlined">bolt</span>
+    </div>
+    <div>
+      <p class="text-[10px] uppercase tracking-widest font-bold text-outline">Daily Streak</p>
+      <p class="text-xl font-bold text-primary leading-none">12 Days</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <!-- Meditation Timer -->
+  <div class="lg:col-span-8 bg-surface-container-lowest rounded-[2rem] p-10 custom-shadow relative overflow-hidden group">
+    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+      <span class="material-symbols-outlined text-[120px]">self_care</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center text-center">
+      <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-secondary mb-8">Guided Meditation</span>
+      <h3 class="text-3xl font-bold text-primary mb-12" id="timer-title">Deep Morning Presence</h3>
+      <!-- Circular Progress -->
+      <div class="relative w-72 h-72 flex items-center justify-center mb-12">
+        <svg class="w-full h-full -rotate-90" id="timer-svg">
+          <circle class="text-surface-container-high" cx="144" cy="144" fill="transparent" r="130" stroke="currentColor" stroke-width="8"></circle>
+          <circle class="text-primary" cx="144" cy="144" fill="transparent" r="130" stroke="currentColor"
+            stroke-dasharray="816" stroke-dashoffset="200" stroke-linecap="round" stroke-width="12" id="timer-circle"></circle>
+        </svg>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <span class="text-6xl font-extrabold tracking-tighter text-primary" id="timer-display">15:00</span>
+          <span class="text-sm font-medium text-secondary mt-1">minutes left</span>
+        </div>
+      </div>
+      <!-- Controls -->
+      <div class="flex items-center gap-8">
+        <button onclick="adjustTimer(-5)" class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-3xl">skip_previous</span>
+        </button>
+        <button onclick="toggleTimer()" id="play-btn"
+          class="w-24 h-24 rounded-full premium-gradient flex items-center justify-center text-white shadow-lg hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;" id="play-icon">play_arrow</span>
+        </button>
+        <button onclick="adjustTimer(5)" class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-3xl">skip_next</span>
+        </button>
+      </div>
+      <!-- Session type selector -->
+      <div class="mt-8 flex gap-3">
+        {% for label, mins in [('Focus', 25), ('Meditation', 15), ('Short Break', 5), ('Rest', 10)] %}
+        <button onclick="setTimer('{{ label }}', {{ mins * 60 }})"
+          class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-secondary bg-surface-container hover:bg-secondary-container transition-colors">
+          {{ label }}
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column Stack -->
+  <div class="lg:col-span-4 flex flex-col gap-8">
+    <!-- Pomodoro Focus Timer -->
+    <div class="bg-primary-container text-white rounded-[2rem] p-8 relative overflow-hidden flex-1">
+      <div class="relative z-10">
+        <div class="flex justify-between items-start mb-6">
+          <span class="material-symbols-outlined text-3xl text-secondary-fixed-dim">timer</span>
+          <span id="pomodoro-phase" class="bg-primary/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Work Phase (Round 1)</span>
+        </div>
+        <h4 class="text-2xl font-bold mb-2">Focus Sprint</h4>
+        <p class="text-on-primary-container text-sm mb-4">Deep work session for your creative projects.</p>
+        
+        <div class="text-5xl font-black tabular-nums tracking-tighter mb-4 text-center" id="pomodoro-timer">25:00</div>
+        
+        <div class="mb-6">
+          <div class="flex justify-between text-xs font-bold mb-2 text-on-primary-container uppercase tracking-wider">
+            <span>Progress</span><span id="pomodoro-pct">0%</span>
+          </div>
+          <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-white rounded-full transition-all duration-1000" id="pomodoro-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="startPomodoro()" id="pomodoro-start-btn"
+              class="flex-1 py-4 bg-white text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+              <span class="material-symbols-outlined" id="pomodoro-play-icon">play_arrow</span> Start
+            </button>
+            <button onclick="resetPomodoro()"
+              class="p-4 bg-white/10 text-white font-bold rounded-xl flex items-center justify-center hover:bg-white/20 transition-colors">
+              <span class="material-symbols-outlined">restart_alt</span>
+            </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stress Relief -->
+    <div class="bg-surface-container-lowest rounded-[2rem] p-8 custom-shadow">
+      <h4 class="text-xl font-bold text-primary mb-6">Stress Relief</h4>
+      <div class="space-y-6">
+        <div onclick="toggleNatureAudio()" class="flex items-center gap-4 group cursor-pointer">
+          <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary-container transition-colors">
+            <span class="material-symbols-outlined" id="nature-icon">forest</span>
+          </div>
+          <div class="flex-1">
+            <p class="font-bold text-sm text-primary">Nature Sounds</p>
+            <p class="text-xs text-secondary">Acoustic immersion</p>
+          </div>
+          <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" id="nature-play-indicator">play_circle</span>
+        </div>
+        <div onclick="openStretchModal()" class="flex items-center gap-4 group cursor-pointer">
+          <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary-container transition-colors">
+            <span class="material-symbols-outlined">self_improvement</span>
+          </div>
+          <div class="flex-1">
+            <p class="font-bold text-sm text-primary">Quick Stretch</p>
+            <p class="text-xs text-secondary">5-minute release</p>
+          </div>
+          <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+        </div>
+        <div onclick="document.getElementById('breath-section').scrollIntoView({behavior: 'smooth'})" class="flex items-center gap-4 group cursor-pointer">
+          <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary-container transition-colors">
+            <span class="material-symbols-outlined">air</span>
+          </div>
+          <div class="flex-1">
+            <p class="font-bold text-sm text-primary">Breathwork</p>
+            <p class="text-xs text-secondary">4-7-8 technique</p>
+          </div>
+          <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_downward</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Breathing Exercise -->
+<div id="breath-section" class="mt-8 bg-white rounded-[2rem] p-12 flex flex-col md:flex-row items-center justify-between gap-12 custom-shadow overflow-hidden relative">
+  <div class="absolute inset-0 bg-gradient-to-r from-secondary-container/30 to-transparent opacity-50"></div>
+  <div class="relative z-10 max-w-md">
+    <span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block">Active Exercise</span>
+    <h3 class="text-4xl font-extrabold text-primary mb-4 leading-tight">4-7-8 Breathing Technique</h3>
+    <p class="text-secondary text-lg mb-8">Reduce anxiety and assist sleep with this rhythmic breathing pattern. Just follow the visual pulse.</p>
+    <div class="flex gap-4">
+      <button onclick="startBreathing()" class="px-8 py-4 premium-gradient text-white font-bold rounded-xl hover:opacity-90 transition-all">Start Breathing</button>
+      <button onclick="resetBreathing()" class="px-8 py-4 bg-surface-container text-secondary font-bold rounded-xl hover:bg-surface-container-high transition-all">Reset</button>
+    </div>
+  </div>
+  <div class="relative z-10 flex flex-col items-center">
+    <div class="w-64 h-64 rounded-full bg-secondary-container/30 flex items-center justify-center relative" id="breath-ring-outer">
+      <div class="absolute inset-0 rounded-full border-4 border-secondary/20 scale-110 transition-all duration-4000" id="breath-ring-1"></div>
+      <div class="absolute inset-0 rounded-full border-2 border-secondary/10 scale-125 transition-all duration-4000" id="breath-ring-2"></div>
+      <div class="w-48 h-48 rounded-full bg-secondary-container/50 flex items-center justify-center transition-all duration-4000" id="breath-inner">
+        <div class="w-32 h-32 rounded-full bg-primary flex flex-col items-center justify-center text-white shadow-xl transition-all duration-4000" id="breath-core">
+          <span class="text-xl font-bold uppercase tracking-widest" id="breath-label">Ready</span>
+          <span class="text-3xl font-black mt-1 tabular-nums block" id="breath-timer"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3" id="breath-dots">
+      <div class="w-3 h-3 rounded-full bg-primary"></div>
+      <div class="w-3 h-3 rounded-full bg-secondary/30"></div>
+      <div class="w-3 h-3 rounded-full bg-secondary/30"></div>
+    </div>
+    <p class="mt-4 text-sm font-bold text-secondary" id="breath-count">Step 1 of 3</p>
+  </div>
+</div>
+
+<!-- Footer Quote -->
+<footer class="mt-20 text-center max-w-2xl mx-auto pb-12">
+  <p class="text-2xl font-medium text-stone-400 italic">"The soul always knows what to do to heal itself. The challenge is to silence the mind."</p>
+  <p class="mt-4 text-sm font-bold tracking-widest text-outline uppercase">— Caroline Myss</p>
+</footer>
+
+<!-- Stretch Modal -->
+<div id="stretch-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
+  <div class="bg-surface-container-lowest rounded-[2rem] p-8 max-w-sm w-full custom-shadow text-center relative">
+    <button onclick="document.getElementById('stretch-modal').classList.add('hidden')" class="absolute top-4 right-4 text-secondary hover:text-primary">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="w-16 h-16 bg-primary-container text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+      <span class="material-symbols-outlined text-3xl items-center flex text-white relative top-1">self_improvement</span>
+    </div>
+    <h3 class="text-xl font-bold text-primary mb-2">Quick Stretch</h3>
+    <p class="text-sm text-secondary mb-6">Follow these simple movements to release tension.</p>
+    <ul class="text-left text-sm space-y-3 mb-6">
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span> <strong>Neck Rolls:</strong> Slowly 5 times each direction.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span> <strong>Shoulder Shrugs:</strong> Lift up, roll back. Repeat 10 times.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span> <strong>Overhead Reach:</strong> Interlace fingers, push up for 15s.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span> <strong>Seated Twist:</strong> Rotate torso left, then right. Hold 15s each.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span> <strong>Forward Fold:</strong> Reach for toes, relax back for 20s.</li>
+    </ul>
+    <button onclick="document.getElementById('stretch-modal').classList.add('hidden')" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:opacity-90 transition-colors">Done</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/tools.js') }}"></script>
+{% endblock %}
